@@ -1,4 +1,4 @@
 export var GLOBAL = {
-    // url: 'https://api.ingresayaa.com/api/'
-    url: 'http://localhost:4201/api/'
+    url: 'https://api.workingprime.com/test/'
+    // url: 'http://localhost:3200/api/'
 }
