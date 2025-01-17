@@ -1,0 +1,127 @@
+<app-nav></app-nav>
+
+<div class="container py-4">
+    <app-sidebar></app-sidebar>
+
+    <div class="card shadow mt-4" style="border-color: #F8F8F8;">
+        <h5 class="card-header d-flex justify-content-between">
+            Geometría
+            <a class="btn btn-success" [routerLink]="['/admin/geometria/registrar']">
+                <i class="bi bi-plus-circle-fill"></i> &nbsp; Registrar
+            </a>
+        </h5>
+        <div class="card-body text-center">
+            <div class="text-center">
+                <!-- Button addon on the right -->
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Buscar Preguntas" name="filtro"
+                        [(ngModel)]="filtro" (keyup)="filtrar()" required />
+
+                    <a class="btn btn-primary bi-search" (click)="filtrar()">
+                    </a>
+
+                    <!-- <button class="btn btn-success bi-file-earmark-excel-fill mx-2" type="button" (click)="download_excel()">
+                        Exportar
+                    </button> -->
+                </div>
+            </div>
+
+            <ng-container *ngIf="show_alert_void">
+                <div class="alert alert-danger my-3">
+                    <i class="bi bi-exclamation-octagon fw-bold fs-4"></i> &nbsp; &nbsp;
+                    ERROR! No existe alguna pregunta relacionado con "<strong>{{filtro}}</strong>"
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="load_data">
+                <div class="spinner-grow text-secondary my-3" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!load_data">
+                <div class="card my-3" *ngFor="let item of preguntas | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <div class="card-header d-flex justify-content-between">
+
+                        <div class="" [innerHTML]="item.pregunta"></div>
+
+                        <div>
+                            <a class="text-primary m-1" [routerLink]="['/admin/geometria', item._id]"
+                                style="text-decoration: none;">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
+
+                            <a type="button" class="text-danger m-1" data-bs-toggle="modal"
+                                [attr.data-bs-target]="'#delete-' + item._id">
+                                <i class="bi-trash-fill"></i>
+                            </a>
+
+                            <a class="m-1" [ngClass]="{'text-success': item.solucionario}" title="Con solucionario"
+                                style="text-decoration: none;">
+                                <i class="" [ngClass]="{'bi bi-check-circle-fill': item.solucionario}"></i>
+                            </a>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="delete-{{ item._id }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel1">
+                                                Eliminar pregunta
+                                            </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Desea eliminar de forma permanente la pregunta
+                                            <strong [innerHTML]="item.pregunta"></strong>?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i
+                                                    class="bi bi-x-lg"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-danger" (click)="eliminar(item._id)">
+                                                <i class="bi bi-trash"></i> &nbsp; Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <button type="button" class="btn btn-light btn-sm m-1"
+                                [ngClass]="{'border-success' : item.alt_a[1] == true}">
+                                A). {{item.alt_a[0]}}
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm m-1"
+                                [ngClass]="{'border-success' : item.alt_b[1] == true}">
+                                B). {{item.alt_b[0]}}
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm m-1"
+                                [ngClass]="{'border-success' : item.alt_c[1] == true}">
+                                C). {{item.alt_c[0]}}
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm m-1"
+                                [ngClass]="{'border-success' : item.alt_d[1] == true}">
+                                D). {{item.alt_d[0]}}
+                            </button>
+                            <button type="button" class="btn btn-light btn-sm m-1"
+                                [ngClass]="{'border-success' : item.alt_e[1] == true}">
+                                E). {{item.alt_e[0]}}
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </ng-container>
+
+        </div>
+        <div class="card-footer text-center">
+            <pagination-controls (pageChange)="p = $event" [responsive]="true" previousLabel="" nextLabel="">
+            </pagination-controls>
+        </div>
+    </div>
+</div>

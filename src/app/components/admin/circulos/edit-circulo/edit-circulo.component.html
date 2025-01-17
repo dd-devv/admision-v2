@@ -1,0 +1,61 @@
+<app-nav></app-nav>
+
+<div class="container py-4">
+    <app-sidebar></app-sidebar>
+
+    <div class="card shadow mt-4" style="border-color: #F8F8F8;">
+        <h3 class="card-header">
+            Editar Círculo de estudios
+        </h3>
+
+        <div class="card-body">
+            <form #actualizarForm="ngForm" (ngSubmit)="actualizar(actualizarForm)">
+                <div class="row">
+                    <div class="col-12 col-md-6 mt-3">
+                        <label for="titulo" class="form-label">Título</label>
+                        <input class="form-control" type="text" id="titulo" name="titulo" [(ngModel)]="circulo.titulo"
+                            placeholder="Ingrese el título" required />
+                    </div>
+                    <div class="col-12 col-md-6 mt-3">
+                        <label for="icono" class="form-label">Ícono</label>
+                        <input class="form-control" type="text" id="icono" name="icono" [(ngModel)]="circulo.icono"
+                            placeholder="Ingrese el ícono de bootstrap" required />
+                    </div>
+                    <div class="col-12 mt-3">
+                        <label for="link" class="form-label">Link</label>
+                        <input class="form-control" type="text" id="link" name="link" [(ngModel)]="circulo.link"
+                            placeholder="Ingrese el link" required />
+                    </div>
+                    <div class="col-6 mt-3">
+                        <label for="color_borde-input" class="form-label">Color del borde &nbsp;</label>
+                        <input class="form-control form-control-color_borde" type="color" id="color_borde-input" value="{{circulo.color_borde}}"
+                            name="color_borde" [(ngModel)]="circulo.color_borde" required>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <label for="color_fondo-input" class="form-label">Color del fondo &nbsp;</label>
+                        <input class="form-control form-control-color_fondo" type="color" id="color_fondo-input" value="{{circulo.color_fondo}}"
+                            name="color_fondo" [(ngModel)]="circulo.color_fondo" required>
+                    </div>
+                </div>
+
+                <div class="text-center mt-3">
+                    <button class="btn btn-primary mx-2" type="submit"
+                        [disabled]="actualizarForm.invalid" *ngIf="!load_btn">
+                        <i class="bi bi-check2-circle"></i> &nbsp; 
+                        Actualizar círculo
+                    </button>
+
+                    <!-- Button with growing spinner and text -->
+                    <button *ngIf="load_btn" type="button" class="btn btn-secondary" disabled>
+                        <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true"></span>
+                        Actualizando...
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card-footer text-center">
+            <a class="btn btn-success mx-2" [routerLink]="['/admin/circulos']"><i class="bi bi-arrow-left"></i></a>
+        </div>
+    </div>
+</div>

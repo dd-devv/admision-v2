@@ -1,0 +1,17 @@
+[
+    {
+      "id": "UNSCH-01",
+      "name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-02",
+        "name": "Letras",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-03",
+        "name": "Biomédicas",
+        "universidad_id": "UNSCH"
+    }
+]

@@ -1,0 +1,100 @@
+<app-nav></app-nav>
+
+<div class="container py-4">
+    <app-sidebar></app-sidebar>
+
+    <div class="card shadow mt-4" style="border-color: #F8F8F8;">
+        <h3 class="card-header d-flex justify-content-between">
+            Pagos
+        </h3>
+        <div class="card-body text-center">
+            <div class="text-center">
+                <!-- Button addon on the right -->
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Buscar por ID" name="filtro"
+                        [(ngModel)]="filtro" (keyup)="filtrar_id(filtro)" required />
+
+                    <a class="btn btn-primary bi-search" (click)="filtrar_id(filtro)">
+                    </a>
+                </div>
+
+                <div class="rounded mt-4" *ngIf="err_msg" style="background-color: rgb(255, 223, 223);">
+                    <p class="text-center p-2 text-danger">ERROR: Ingrese el ID correctamente</p>
+                </div>
+            </div>
+
+            <div class="">
+                <div class="text-center" *ngIf="load_data == true">
+                    <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                    </div>
+                    <h5 class="text-black-50"><small>Cargando...</small></h5>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6"
+                        *ngFor="let item of pagos | paginate: { itemsPerPage: 10, currentPage: p }; let indice = index">
+                        <div class="card shadow my-4" style="border-color: rgb(1, 228, 115);">
+                            <div class="card-header" style="background: rgb(226, 255, 241);">
+                                Pago N° {{pagos.length - indice}} &nbsp; &nbsp; &nbsp;
+                                <strong>{{item.user.nombres}} {{item.user.apellidos}}</strong> &nbsp; &nbsp; &nbsp;
+
+                                <span class="badge rounded-pill bg-success"
+                                    *ngIf="item.estado == 'Confirmado'">{{item.estado}}</span>
+                                <span class="badge rounded-pill text-bg-danger"
+                                    *ngIf="item.estado == 'Vencido'">{{item.estado}}</span>
+                                <span class="badge rounded-pill text-bg-secondary"
+                                    *ngIf="item.estado == 'Reservado'">{{item.estado}}</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">ID: {{item._id}}</h5>
+                                <h4 class="text-center">S/. {{item.subtotal}}</h4>
+                                <p class="card-text">Desde <strong>{{item.createdAt | date}}</strong> hasta
+                                    <strong>{{item.vencimiento | date}}</strong>
+                                </p>
+
+                                <!-- Button trigger modal -->
+                                <button *ngIf="item.estado == 'Reservado'" type="button" class="btn btn-primary"
+                                    data-bs-toggle="modal" [attr.data-bs-target]="'#modalConfirm-' + item._id">
+                                    <i class="bi bi-check2-circle"></i> &nbsp; Confirmar pago
+                                </button>
+
+                                <!-- Modal Confirmar pago-->
+                                <div class="modal fade" id="modalConfirm-{{ item._id }}" tabindex="-1"
+                                    aria-labelledby="modalConfirmLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="modalConfirmLabel">
+                                                    Confirmación de pago
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Confirmar pago de <strong>{{ item._id}}</strong>?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i
+                                                        class="bi bi-x-lg"></i></button>
+
+                                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                                    (click)="cambiar_estado_confirmado (item._id)">
+                                                    <i class="bi bi-check2-circle"></i> &nbsp; Confirmar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <pagination-controls (pageChange)="p = $event" [responsive]="true" previousLabel="" nextLabel="">
+            </pagination-controls>
+        </div>
+    </div>
+</div>

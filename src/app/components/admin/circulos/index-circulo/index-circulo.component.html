@@ -1,0 +1,91 @@
+<app-nav></app-nav>
+
+<div class="container py-4">
+    <app-sidebar></app-sidebar>
+
+    <div class="card shadow mt-4" style="border-color: #F8F8F8;">
+        <h3 class="card-header d-flex justify-content-between">
+            Círculos de estudio
+            <a class="btn btn-success" [routerLink]="['/admin/circulos/registrar']">
+                <i class="bi bi-plus-circle"></i> &nbsp; Registrar
+            </a>
+        </h3>
+
+        <div class="card-body text-center">
+            <div class="" *ngIf="load_data">
+                <!-- Custom size border spinner -->
+                <div class="text-center">
+                    <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                    </div>
+                    <h5 class="text-black-50"><small>Cargando...</small></h5>
+                </div>
+            </div>
+
+            <div *ngIf="!load_data && circulos.length >= 1">
+                <div class="row">
+                    <ng-container *ngFor="let item of circulos">
+    
+                        <!-- Cursos -->
+                        <div class="col-12 col-sm-4 mb-3">
+                            <div class="card border-0" [ngStyle]="{'background-color': item.color_fondo}">
+                                <div class="card-body" [ngStyle]="{'color': item.color_borde}">
+                                    <h5 class="card-title fw-bold">{{item.titulo}}
+                                        &nbsp;
+                                        <a [routerLink]="['/admin/circulos', item._id]" class="text-primary"
+                                            style="text-decoration: none;">
+                                            <i class="bi-pencil-fill"></i> &nbsp;
+                                        </a>
+                                        <a data-bs-toggle="modal" [attr.data-bs-target]="'#delete-' + item._id"
+                                            class="text-danger" type="button">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </a>
+                                    </h5>
+                                    <hr>
+                                    <a href="{{item.link}}" target="_blank" [ngStyle]="{'color': item.color_borde}" style="text-decoration: none; cursor: pointer;">
+                                        <h1 class="card-text"><i class="{{item.icono}}"></i></h1>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Modal eliminar -->
+                        <div class="modal fade" id="delete-{{ item._id }}" tabindex="-1" style="display: none"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title text-center">
+                                            Eliminar círculo de estudios
+                                        </h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                        </button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        Desea eliminar el círculo <strong>{{item.titulo}}</strong>?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary btn-sm bi-x-circle-fill" type="button"
+                                            data-bs-dismiss="modal">
+                                        </button>
+                                        <button *ngIf="!load_btn" class="btn btn-danger btn-sm" data-bs-dismiss="modal"
+                                            (click)="eliminar(item._id)" type="button"> <i class="bi bi-trash-fill"></i>
+                                            &nbsp;
+                                            Eliminar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+
+            <div class="" *ngIf="!load_data && circulos.length == 0">
+                <div class="alert alert-danger text-center mt-4" role="alert">
+                    <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                    <strong>Aún no existen círculos de estudios creados!!</strong>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

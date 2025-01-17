@@ -1,0 +1,143 @@
+<app-nav></app-nav>
+
+<div class="container py-4">
+    <app-sidebar></app-sidebar>
+
+    <div class="card shadow mt-4" style="border-color: #F8F8F8;">
+        <h3 class="card-header d-flex justify-content-between">
+            Reseñas
+        </h3>
+        <div class="card-body text-center">
+
+            <div class="">
+                <div class="text-center" *ngIf="load_data">
+                    <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                    </div>
+                    <h5 class="text-black-50"><small>Cargando...</small></h5>
+                </div>
+
+                <ng-container *ngIf="!load_data">
+
+                    <!-- Sin reseñas -->
+                    <div *ngIf="reviews.length == 0">
+                        <div class="alert alert-danger text-center mt-4" role="alert">
+                            <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                            Aún no existen reseñas de nuestros usuarios.
+                        </div>
+                    </div>
+
+                    <!-- Cuando existe más de una reseña -->
+                    <div *ngIf="reviews.length > 0">
+                        <div class="card my-4"
+                            *ngFor="let item of reviews | paginate: { itemsPerPage: 10, currentPage: p }; let indice = index ">
+                            <div class="card-header text-black-50 d-flex justify-content-between">
+                                <h6 class="fw-bold">{{item.user.nombres}} {{item.user.apellidos}} &nbsp;
+                                    <span class="badge rounded-pill text-bg-danger" type="button" data-bs-toggle="modal"
+                                    [attr.data-bs-target]="'#modalEliminar-' + item._id">
+                                        <i class="bi bi-trash-fill"></i> &nbsp;
+                                        Eliminar
+                                    </span>
+                                </h6>
+                                <h6>
+                                    <i class="bi bi-star-fill" [ngClass]="{'text-warning': item.estrellas >= 1}"></i>
+                                    <i class="bi bi-star-fill" [ngClass]="{'text-warning': item.estrellas >= 2}"></i>
+                                    <i class="bi bi-star-fill" [ngClass]="{'text-warning': item.estrellas >= 3}"></i>
+                                    <i class="bi bi-star-fill" [ngClass]="{'text-warning': item.estrellas >= 4}"></i>
+                                    <i class="bi bi-star-fill" [ngClass]="{'text-warning': item.estrellas >= 5}"></i>
+                                </h6>
+
+                                <h6 *ngIf="item.destacado">
+                                    <span class="badge rounded-pill text-bg-warning"><i class="bi bi-star-fill"></i>
+                                        &nbsp;
+                                        Destacado</span>
+                                </h6>
+                            </div>
+                            <div class="card-body text-center">
+                                <blockquote class="blockquote mb-0">
+                                    <i class="bi bi-quote"></i>
+                                    <p [innerHTML]="item.comentario"></p>
+                                </blockquote>
+
+                                <div class="text-black-50">
+                                    <i class="bi bi-calendar-event"></i> &nbsp; {{item.createdAt | date}}
+                                </div>
+                            </div>
+
+                            <!-- Button trigger modal destacar -->
+                            <button *ngIf="!item.destacado" type="button" class="btn btn-light" data-bs-toggle="modal"
+                                [attr.data-bs-target]="'#modalDestacar-' + item._id">
+                                <i class="bi bi-star-fill"></i> &nbsp;
+                                Destacar
+                            </button>
+
+                            <!-- Modal destacar-->
+                            <div class="modal fade" id="modalDestacar-{{ item._id }}" tabindex="-1"
+                                aria-labelledby="modalDestacarLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="modalDestacarLabel">
+                                                Destacar review
+                                            </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Destacar <strong [innerHTML]="item.comentario"></strong>?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i
+                                                    class="bi bi-x-lg"></i>
+                                            </button>
+
+                                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal"
+                                                (click)="destacar_review(item._id)">
+                                                <i class="bi bi-star-fill"></i> &nbsp;
+                                                Destacar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal eliminar review-->
+                            <div class="modal fade" id="modalEliminar-{{ item._id }}" tabindex="-1"
+                                aria-labelledby="modalEliminarLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5 fw-bold text-danger" id="modalEliminarLabel">
+                                                Eliminar reseña
+                                            </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Eliminar <strong [innerHTML]="item.comentario"></strong>?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i
+                                                    class="bi bi-x-lg"></i>
+                                            </button>
+
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                                (click)="eliminar_review(item._id)">
+                                                <i class="bi bi-trash-fill"></i> &nbsp;
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <pagination-controls (pageChange)="p = $event" [responsive]="true" previousLabel="" nextLabel="">
+            </pagination-controls>
+        </div>
+    </div>
+</div>

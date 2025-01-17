@@ -1,0 +1,37 @@
+<app-nav></app-nav>
+
+<div class="container py-5">
+    <div class="shadow rounded mt-5 p-4">
+        <div class="row">
+            <div class="col-sm-3 col-12 mt-3">
+                <app-sidebar></app-sidebar>
+            </div>
+            <!-- actualizar contraseña -->
+            <div class="col-sm-9 col-12 mt-3">
+                <h3 class="text-center fw-bold py-4" style="color:rgb(6, 170, 115)">MI CÓDIGO DE REFERIDO</h3>
+                <!-- Body -->
+                <div class="d-flex">
+                    <div class="flex-fill border-box d-none d-lg-block"
+                        style="width: 5%; border-left: 1px solid rgb(6, 170, 115);">
+                    </div>
+
+                    <div class="flex-fill" style="width: 95%;">
+                        <div class="text-center">
+                            <p>
+                                Estimado usuario, comparte el siguiente código con sus amigos y/o conocidos
+                                para que puedan disfrutar de un descuento del <strong class="text-primary fs-5">10%</strong> en sus pagos.
+                            </p>
+
+                            <div class="d-flex align-items-center justify-content-center mt-4">
+                                <div class="card d-flex align-items-center justify-content-center" style="width: 200px; height: 70px; border-color:rgb(13, 110, 253); background-color: rgb(231, 243, 255);">
+                                    <h1 class="my-4 " style="font-size: 2.5rem;">{{user.codigo_referido}}</h1>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

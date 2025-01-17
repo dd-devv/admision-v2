@@ -1,0 +1,63 @@
+<app-nav></app-nav>
+
+<div class="container py-5">
+    <div class="shadow rounded mt-5 p-4">
+        <div class="row">
+            <div class="col-sm-3 col-12 mt-3">
+                <app-sidebar></app-sidebar>
+            </div>
+            <!-- actualizar contraseña -->
+            <div class="col-sm-9 col-12 mt-3">
+                <h3 class="text-center fw-bold py-3" style="color:rgb(6, 170, 115)">CÍRCULOS DE ESTUDIO</h3>
+                <!-- Body -->
+                <div class="d-flex">
+                    <div class="flex-fill border-box d-none d-lg-block"
+                        style="width: 5%; border-left: 1px solid rgb(6, 170, 115);">
+                    </div>
+
+                    <div class="flex-fill" style="width: 95%;">
+                        <div class="" *ngIf="load_data">
+                            <!-- Custom size border spinner -->
+                            <div class="text-center">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+                        </div>
+            
+                        <div *ngIf="!load_data && circulos.length >= 1">
+                            <div class="row">
+                                <div class="text-center pb-2 fs-5 text-black-50">
+                                    Accede a los círculos de estudio, dando click sobre el ícono
+                                </div>
+                                <ng-container *ngFor="let item of circulos">
+                
+                                    <!-- Cursos -->
+                                    <div class="col-12 col-sm-4 mb-3 text-center">
+                                        <div class="card border-0" [ngStyle]="{'background-color': item.color_fondo}">
+                                            <div class="card-body" [ngStyle]="{'color': item.color_borde}">
+                                                <h5 class="card-title fw-bold">{{item.titulo}}</h5>
+                                                <hr>
+                                                <a href="{{item.link}}" target="_blank" [ngStyle]="{'color': item.color_borde}" style="text-decoration: none; cursor: pointer;">
+                                                    <h1 class="card-text"><i class="{{item.icono}}"></i></h1>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+            
+                        <div class="" *ngIf="!load_data && circulos.length == 0">
+                            <div class="alert alert-secondary text-center mt-4" role="alert">
+                                <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                <strong>Por el momento no se cuenta con circulo de estudios, muy pronto estará disponible!!!
+                                </strong>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

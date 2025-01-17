@@ -1,0 +1,155 @@
+<app-nav></app-nav>
+
+<div class="mt-5">
+    <div class="mt-5 pt-5">
+        <div class="mb-5 container d-flex justify-content-center">
+            <div class="p-4 p-sm-5 col-12 col-sm-8 rounded shadow">
+                <h2 class="text-center text-black-50 fw-bold">Regístrate!</h2>
+                <p class="text-center pb-4">
+                    Cree una cuenta para disfrutar de las funciones de nuestro sistema
+                </p>
+                <form #registroForm="ngForm" (ngSubmit)="registrar(registroForm)" autocomplete="off">
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <label for="nombres" class="form-label">Nombres</label>
+                            <input type="text" class="form-control" name="nombres"
+                                id="nombres" [(ngModel)]="user.nombres" required />
+                        </div>
+
+                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                            <label for="apellidos" class="form-label">Apellidos</label>
+                            <input type="text" class="form-control"
+                                name="apellidos" id="apellidos" [(ngModel)]="user.apellidos" required />
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <label for="email" class="form-label">Correo</label>
+                            <input type="email" class="form-control" name="email"
+                                id="email" [(ngModel)]="user.email" required />
+                        </div>
+
+                        <div class="col-6">
+                            <label for="telefono" class="form-label">WhatsApp</label>
+                            <input type="text" class="form-control" name="telefono"
+                                id="telefono" [(ngModel)]="user.telefono" required maxlength="9" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <label for="dni" class="form-label">DNI</label>
+                            <input type="text" class="form-control" name="dni" id="dni"
+                                [(ngModel)]="user.dni" required maxlength="8" />
+                        </div>
+
+                        <div class="col-6">
+                            <label for="f_nacimiento" class="form-label">Nacimiento</label>
+                            <input type="date" class="form-control" name="f_nacimiento"
+                                id="f_nacimiento" [(ngModel)]="user.f_nacimiento" required />
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12 col-sm-6">
+                            <label for="password1" class="form-label">Contraseña</label>
+                            <input [type]="password" class="form-control"
+                                (keyup)="compare_password()" name="password1" id="password1" [(ngModel)]="password1"
+                                required/>
+                        </div>
+
+                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                            <label for="password" class="form-label">Confirmar contraseña</label>
+                            <div class="input-group">
+                                <input [type]="password" class="form-control" id="password"
+                                    name="password" [(ngModel)]="user.password"
+                                    required (keyup)="compare_password()" />
+                                <a class="btn btn-outline-primary" (click)="onClickPass()">
+                                    <i class="bi bi-eye-fill" aria-hidden="true" *ngIf="!show"></i>
+                                    <i class="bi bi-eye-slash-fill" aria-hidden="true" *ngIf="show"></i>
+                                </a>
+                            </div>
+
+                            <div class="alert alert-danger mt-2 text-center" role="alert" *ngIf="alert_pass">
+                                <em>Las contraseñas no coinciden</em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12 col-sm-6">
+                            <label for="genero" class="form-label">Género</label>
+                            <select id="genero" class="form-select" name="genero" [(ngModel)]="user.genero" required>
+                                <option value="" selected disabled></option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                            <label for="universidad" class="form-label">Universidad</label>
+                            <select id="universidad" class="form-select" name="universidad"
+                                [(ngModel)]="user.universidad" required (change)="select_universidad()">
+                                <option selected disabled value=""></option>
+                                <option value="{{item.id}}" *ngFor="let item of universidades"> {{item.id}} -
+                                    {{item.name}} </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12 col-sm-6 mt-3 mt-sm-0" *ngIf="!isDisabledArea">
+                            <label for="area" class="form-label">Área</label>
+                            <select id="area" class="form-select" name="area" [(ngModel)]="user.area"
+                                [disabled]="isDisabledArea" (change)="select_area()" required>
+                                <option selected disabled value=""></option>
+                                <option *ngFor="let item of areas" value="{{item.name}}"> Área {{item.name}} </option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 col-sm-6 mt-3 mt-sm-0" *ngIf="!isDisabledEscuela">
+                            <label for="escuela" class="form-label">Escuela</label>
+                            <select id="escuela" class="form-select" name="escuela" [(ngModel)]="user.escuela"
+                                [disabled]="isDisabledEscuela" required>
+                                <option selected disabled value=""></option>
+                                <option value="{{item.name}}" *ngFor="let item of escuelas"> {{item.name}} </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-check d-flex justify-content-center mt-4">
+                        <input class="form-check-input" type="checkbox" name="recordar" id="flexCheckDefault"
+                            [(ngModel)]="recordar">
+                        <label class="form-check-label" for="flexCheckDefault"> &nbsp; &nbsp;
+                            Recordar sesión
+                        </label>
+                    </div>
+
+                    <div class="pt-2 text-center">
+                        <small>Al dar click en <strong>Registrar</strong> aceptas nuestras
+                            <strong [routerLink]="['/politica-privacidad']"
+                            style="cursor: pointer; color: #6F42C1;">
+                            Políticas de privacidad
+                        </strong>
+                        </small>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary" [disabled]="registroForm.invalid">
+                            <i class="bi bi-person-check"></i> &nbsp; Registrar
+                        </button>
+                    </div>
+
+                    <p class="font-size-sm pt-4 text-center">
+                        Ya tienes cuenta?
+                        <a class="fw-bold text-decoration-none text-success" [routerLink]="['/login']">
+                            Iniciar sesión
+                        </a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

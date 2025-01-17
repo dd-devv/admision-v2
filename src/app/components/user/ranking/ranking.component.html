@@ -1,0 +1,33 @@
+<app-nav></app-nav>
+
+<div class="container py-5">
+    <div class="shadow rounded mt-5 p-4">
+        <div class="text-center">
+            <h4 class="fw-bold" style="color: rgb(3, 62, 45);">Nuestro Ranking</h4>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Orden</th>
+                            <th scope="col">Nombres</th>
+                            <th scope="col">Puntaje</th>
+                            <th scope="col">Nota</th>
+                            <th scope="col">Área</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr *ngFor="let item of usuarios; let indice = index">
+                            <th scope="row"> {{indice + 1}} </th>
+                            <td *ngIf="item.user._id != id"> {{item.user.nombres}} {{item.user.apellidos}} </td>
+                            <td *ngIf="item.user._id == id"> <strong>Tú</strong> </td>  
+                            <td> {{item.puntos}} </td>
+                            <td [ngClass]="{'text-primary' : item.nota >= 10.5}"> {{item.nota}} </td>
+                            <td> {{item.user.area}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

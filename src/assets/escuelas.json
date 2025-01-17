@@ -1,0 +1,200 @@
+[
+    {
+      "id": "UNSCH-0101",
+      "name": "Administración de Empresas",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+    {
+      "id": "UNSCH-0102",
+      "name": "Agronomía",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+    {
+      "id": "UNSCH-0103",
+      "name": "Ciencias Físico-Matemáticas",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+    {
+      "id": "UNSCH-0104",
+      "name": "Contabilidad y Auditoría",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+    {
+      "id": "UNSCH-0105",
+      "name": "Economía",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+    {
+      "id": "UNSCH-0106",
+      "name": "Ingeniería Agrícola",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+    {
+      "id": "UNSCH-0107",
+      "name": "Ingeniería Agroforestal",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+    {
+      "id": "UNSCH-0108",
+      "name": "Ingeniería Agroindustrial",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+    {
+      "id": "UNSCH-0109",
+      "name": "Ingeniería Civil",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+    {
+      "id": "UNSCH-0110",
+      "name": "Ingeniería de Minas",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+    {
+      "id": "UNSCH-0111",
+      "name": "Ingeniería de Sistemas",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+    {
+      "id": "UNSCH-0112",
+      "name": "Ingeniería en Industrias Alimentarias",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+    {
+      "id": "UNSCH-0113",
+      "name": "Ingeniería Química",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+
+    {
+        "id": "UNSCH-0201",
+        "name": "Antropología Social",
+        "area_id": "UNSCH-02",
+        "area_name": "Letras",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0202",
+        "name": "Arqueología e Historia",
+        "area_id": "UNSCH-02",
+        "area_name": "Letras",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0203",
+        "name": "Ciencias de la Comunicación",
+        "area_id": "UNSCH-02",
+        "area_name": "Letras",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0204",
+        "name": "Derecho",
+        "area_id": "UNSCH-02",
+        "area_name": "Letras",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0205",
+        "name": "Educación Física",
+        "area_id": "UNSCH-02",
+        "area_name": "Letras",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0206",
+        "name": "Educación Inicial",
+        "area_id": "UNSCH-02",
+        "area_name": "Letras",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0207",
+        "name": "Educación Primaria",
+        "area_id": "UNSCH-02",
+        "area_name": "Letras",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0208",
+        "name": "Educación Secundaria",
+        "area_id": "UNSCH-02",
+        "area_name": "Letras",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0209",
+        "name": "Trabajo Social",
+        "area_id": "UNSCH-02",
+        "area_name": "Letras",
+        "universidad_id": "UNSCH"
+    },
+
+    {
+        "id": "UNSCH-0301",
+        "name": "Biología",
+        "area_id": "UNSCH-03",
+        "area_name": "Biomédicas",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0302",
+        "name": "Enfermería",
+        "area_id": "UNSCH-03",
+        "area_name": "Biomédicas",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0303",
+        "name": "Farmacia y Bioquímica",
+        "area_id": "UNSCH-03",
+        "area_name": "Biomédicas",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0304",
+        "name": "Medicina Humana",
+        "area_id": "UNSCH-03",
+        "area_name": "Biomédicas",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0305",
+        "name": "Medicina Veterinaria",
+        "area_id": "UNSCH-03",
+        "area_name": "Biomédicas",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0306",
+        "name": "Obstetricia",
+        "area_id": "UNSCH-03",
+        "area_name": "Biomédicas",
+        "universidad_id": "UNSCH"
+    }
+]

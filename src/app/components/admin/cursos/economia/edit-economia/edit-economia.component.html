@@ -1,0 +1,145 @@
+<app-nav></app-nav>
+
+<div class="container py-4">
+    <app-sidebar></app-sidebar>
+
+    <div class="card shadow mt-4" style="border-color: #F8F8F8;">
+        <h3 class="card-header fw-bold text-center text-muted">
+            Actualizar pregunta de Economía
+        </h3>
+        <div class="card-body">
+            <div class="d-flex justify-content-center m-3">
+                <div class="p-1 p-sm-1 col-12">
+                    <form #actualizarForm="ngForm" (ngSubmit)="actualizar(actualizarForm)">
+                        <div class="mb-3">
+                            <label for="pregunta" class="form-label text-black-50 fw-bold">PREGUNTA</label>
+                            <tinymce id="pregunta" placeholder="Ingrese la pregunta" name="pregunta"
+                                [(ngModel)]="pregunta.pregunta" required>
+                            </tinymce>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12 col-sm-6">
+                                <label for="altA" class="form-label text-black-50">Alternativa A.</label>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <textarea class="form-control" id="altA" rows="1" required
+                                            placeholder="Ingrese la alternativa a" name="alt_a"
+                                            [(ngModel)]="pregunta.alt_a">
+                                        </textarea>
+                                    </div>
+                                    <div class="form-check col-3">
+                                        <input class="form-check-input" type="checkbox" id="check_a" name="check_a"
+                                            [(ngModel)]="check_a" />
+                                        <label class="form-check-label" for="check_a">
+                                            Correcto
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 mt-2 mt-sm-0">
+                                <label for="altB" class="form-label text-black-50">Alternativa B.</label>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <textarea class="form-control" id="altB" rows="1" required
+                                            placeholder="Ingrese la alternativa b" name="alt_b"
+                                            [(ngModel)]="pregunta.alt_b">
+                                        </textarea>
+                                    </div>
+                                    <div class="form-check col-3">
+                                        <input class="form-check-input" type="checkbox" id="check_b" name="check_b"
+                                            [(ngModel)]="check_b" />
+                                        <label class="form-check-label" for="check_b">
+                                            Correcto
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12 col-sm-6">
+                                <label for="altC" class="form-label text-black-50">Alternativa C.</label>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <textarea class="form-control" id="altC" rows="1" required
+                                            placeholder="Ingrese la alternativa c" name="alt_c"
+                                            [(ngModel)]="pregunta.alt_c">
+                                        </textarea>
+                                    </div>
+                                    <div class="form-check col-3">
+                                        <input class="form-check-input" type="checkbox" id="check_c" name="check_c"
+                                            [(ngModel)]="check_c" />
+                                        <label class="form-check-label" for="check_c">
+                                            Correcto
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 mt-2 mt-sm-0">
+                                <label for="altD" class="form-label text-black-50">Alternativa D.</label>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <textarea class="form-control" id="altD" rows="1" required
+                                            placeholder="Ingrese la alternativa d" name="alt_d"
+                                            [(ngModel)]="pregunta.alt_d">
+                                        </textarea>
+                                    </div>
+                                    <div class="form-check col-3">
+                                        <input class="form-check-input" type="checkbox" id="check_d" name="check_d"
+                                            [(ngModel)]="check_d" />
+                                        <label class="form-check-label" for="check_d">
+                                            Correcto
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12 col-sm-6">
+                                <label for="altE" class="form-label text-black-50">Alternativa E.</label>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <textarea class="form-control" id="altE" rows="1" required
+                                            placeholder="Ingrese la alternativa e" name="alt_e"
+                                            [(ngModel)]="pregunta.alt_e">
+                                    </textarea>
+                                    </div>
+                                    <div class="form-check col-3">
+                                        <input class="form-check-input" type="checkbox" id="check_e" name="check_e"
+                                            [(ngModel)]="check_e" />
+                                        <label class="form-check-label" for="check_e">
+                                            Correcto
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 mt-2 mt-sm-0">
+                                <div class="mb-3">
+                                    <label for="solucionario" class="form-label text-black-50 fw-bold">SOLUCIONARIO</label>
+                                    <tinymce id="solucionario" placeholder="Ingrese la solucionario" name="solucionario"
+                                        [(ngModel)]="pregunta.solucionario">
+                                    </tinymce>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary" [disabled]="actualizarForm.invalid && valid">
+                                <i class="bi bi-check2-circle"></i> &nbsp; Actualizar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <a title="Volver a Economía" class="text-success fs-2" [routerLink]="['/admin/economia']"><i
+                    class="bi bi-arrow-left-square-fill"></i></a>
+        </div>
+    </div>
+</div>

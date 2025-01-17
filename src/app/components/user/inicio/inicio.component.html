@@ -1,0 +1,806 @@
+<app-nav></app-nav>
+
+<body>
+  <div class="page-header" data-parallax="false" style="
+      background-image: linear-gradient(
+        90deg,
+        rgba(62, 236, 184, 0.79) 0%,
+        rgba(216, 3, 244, 0.6) 100%
+      );
+    ">
+    <div class="container-fluid" style="padding-top: 10vh">
+      <div class="row text-center">
+        <h1 class="text-white fw-bold">¿Quieres ser un cachimbo?</h1>
+      </div>
+      <h2 class="text-center" style="padding-top: 3vh; font-weight: 300; color: rgb(3, 62, 45)">
+        <em>¡Asegura tu ingreso a la <strong>UNSCH</strong> con el mejor
+          simulacro de exámenes de admisión!</em>
+      </h2>
+
+      <div class="text-center pt-4">
+        <img class="img-fluid rounded p-3" src="../../../../assets/img/logo-unsch.png"
+          style="max-width: 300px; background-color: rgba(255, 255, 255, 0.288)" />
+      </div>
+
+      <div class="row" style="margin: 0; text-align: center">
+        <div class="">
+          <a class="btn btn-warning" style="
+              padding: 0.5vw 5vw 0.5vw 5vw;
+              margin-top: 5vh;
+              font-size: 1.2rem;
+            " [routerLink]="['/usuario/prueba-gratis']">
+            Simulacro de prueba</a>
+        </div>
+      </div>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="#ffff" fill-opacity="1"
+        d="M0,128L60,117.3C120,107,240,85,360,101.3C480,117,600,171,720,197.3C840,224,960,224,1080,218.7C1200,213,1320,203,1380,197.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+      </path>
+    </svg>
+  </div>
+
+  <div>
+    <!-- Asegura tu ingreso -->
+    <div style="padding: 0vw 7vw 1vw 7vw" class="mt-0">
+      <div class="py-0">
+        <p class="fw-bold" style="font-size: 50px; margin: 0; padding: 0; color: rgb(0, 124, 89)">
+          EN NUESTRA PLATAFORMA
+        </p>
+
+        <p class="" style="font-size: 26px">
+          Vivirás una experiencia real de examen de admisión de acuerdo a las
+          exigencias de la UNSCH.
+        </p>
+      </div>
+    </div>
+
+    <!-- Aqui encontrarás -->
+    <div style="padding: 2vw 7vw 2vw 7vw" class="my-3">
+      <div class="shadow rounded">
+        <div class="card-body py-4" style="text-align: justify">
+          <h1 class="card-title text-center fw-bold">Aquí encontrarás</h1>
+
+          <!-- <h4 class="text-center text-black-50" style="font-weight: 300">
+                Aquí encontrarás
+              </h4> -->
+
+          <div class="container-fluid row" style="margin: 0px">
+            <!-- Simulacros -->
+            <div class="col-md-6 col-sm-6 text-center" style="margin-top: 1vh; padding-left: 5vw; padding-right: 5vw">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="rgb(167, 14, 255)"
+                class="bi bi-list-columns" viewBox="0 0 16 16" [routerLink]="['/usuario/simulacros']"
+                style="cursor: pointer">
+                <path fill-rule="evenodd"
+                  d="M0 .5A.5.5 0 0 1 .5 0h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 0 .5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2A.5.5 0 0 1 .5 2h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2A.5.5 0 0 1 .5 4h10a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2A.5.5 0 0 1 .5 6h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2A.5.5 0 0 1 .5 8h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-13 2a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5Zm13 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Z" />
+              </svg>
+              <h5 class="fw-bold" [routerLink]="['/usuario/simulacros']" style="cursor: pointer">
+                Simulacros
+              </h5>
+              <p class="text-center">
+                Son exámenes recreados bajo los estándares, exigencias,
+                puntuaciones y particularidades de cada universidad.
+              </p>
+            </div>
+
+            <!-- Prácticas -->
+            <div class="col-md-6 col-sm-6 text-center" style="margin-top: 1vh; padding-left: 5vw; padding-right: 5vw">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#ff454b" class="bi bi-file-text"
+                viewBox="0 0 16 16" [routerLink]="['/usuario/practicas']" style="cursor: pointer">
+                <path
+                  d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z" />
+                <path
+                  d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
+              </svg>
+              <h5 class="fw-bold" [routerLink]="['/usuario/practicas']" style="cursor: pointer">
+                Prácticas
+              </h5>
+              <p class="text-center">
+                Son exámenes cortos creados para cada curso, para que puedas
+                medir tu aprendizaje de manera individual.
+              </p>
+            </div>
+
+            <!-- Solucionarios -->
+            <div class="col-md-6 col-sm-6 text-center" style="margin-top: 1vh; padding-left: 5vw; padding-right: 5vw">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#00cc8b"
+                class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                <path
+                  d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                <path
+                  d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+              </svg>
+              <h5 class="fw-bold">Solucionarios</h5>
+              <p class="text-center">
+                Revisa el solucionario de todas las prácticas y simulacros
+                rendidos y mide tu aprendizaje.
+              </p>
+            </div>
+
+            <!-- Cículo de estudios -->
+            <div class="col-md-6 col-sm-6 text-center" style="margin-top: 1vh; padding-left: 5vw; padding-right: 5vw">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#f26d00" class="bi bi-arrow-repeat"
+                viewBox="0 0 16 16">
+                <path
+                  d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
+                <path fill-rule="evenodd"
+                  d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
+              </svg>
+              <h5 class="fw-bold">Círculo de estudios</h5>
+              <p class="text-center">
+                Sube tus propias preguntas y resuélvelas junto a nuestra
+                comunidad.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-5" *ngIf="!activePagos">
+    <div class="">
+
+      <div class="text-center">
+        <h1 class="card-title text-center fw-bold">
+          Desarrolla al máximo tu potencial
+        </h1>
+        <p style="text-align: justify; padding: 2vh 0vh 0vh 0vh">
+          Desarrolla tus capacidades, rinde los exámenes tipo admisión desde
+          cualquier parte del Perú, prepárate para ingresar a la universidad y
+          alcanzar el éxito profesional.
+        </p>
+
+      </div>
+
+      <div class="col-md-2"></div>
+
+      <div class="col-md-8"></div>
+
+      <div class="col-md-2"></div>
+
+      <div class="col-md-2"></div>
+
+      <!-- Sin pago -->
+      <ng-container *ngIf="!activePagos && !viewButton">
+
+        <!-- Sin plan seleccionado -->
+        <div *ngIf="plan != 'basico' && plan != 'premium'">
+          <div class="row mb-3">
+            <h4 style="text-align: center; color: rgb(255, 84, 124)" class="fw-bold">
+              Para acceder a todos los beneficios, adquiere uno de nuestros
+              paquetes Premium
+            </h4>
+
+            <!-- Plan Básico -->
+            <div class="col-12 col-md-6 mt-2">
+              <div class="card shadow" style="border: 1px solid rgb(127, 127, 127)">
+                <div class="card-body">
+                  <h3 class="card-title fw-bold text-black-50 text-center">
+                    Plan Básico
+                  </h3>
+                  <h1 class="text-black-50 text-center fw-bold">S/. 10 <small><small><del>S/. 15</del></small></small></h1>
+                  <h5 class="text-black-50 text-center">Plan mensual (1 mes)</h5>
+                  <div class="row mt-4">
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle text-black-50"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Intentos ilimitados de exámenes simulacros
+                    </div>
+
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle text-black-50"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Intentos ilimitados de exámenes prácticos por curso
+                    </div>
+
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle text-black-50"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Acceso ilimitado a solucionario de exámenes rendidos
+                    </div>
+
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle text-black-50"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Descargas ilimitadas de solucionarios
+                    </div>
+
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle text-black-50"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Estadísticas reales de tu progreso
+                    </div>
+
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle text-black-50"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Acceso desde cualquier dispositivo
+                    </div>
+
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle text-black-50"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Acceso a círculos de estudios
+                    </div>
+                  </div>
+
+                  <div class="row mt-4 px-5">
+                    <button type="button" class="btn" style="background-color: rgb(127, 127, 127); color: white"
+                      data-bs-toggle="modal" data-bs-target="#reservacionModal" (click)="seleccionar_plan('basico')">
+                      <a class="text-reset" style="text-decoration: none">
+                        Adquirir Plan</a>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Plan PREMIUM -->
+            <div class="col-12 col-md-6 mt-2">
+              <div class="card shadow" style="border: 1px solid rgb(111, 66, 193)">
+                <div class="card-body">
+                  <h3 class="card-title fw-bold text-center" style="color: rgb(111, 66, 193)">
+                    Plan Premium
+                  </h3>
+                  <h1 style="color: rgb(255, 143, 175)" class="text-center fw-bold">
+                    S/. 20 <small class="text-black-50"><small><del>S/. 30</del></small></small>
+                  </h1>
+                  <h5 style="color: rgb(255, 143, 175)" class="text-center">
+                    Plan trimestral (3 meses)
+                  </h5>
+
+                  <div class="row mt-4">
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle-fill text-success"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Intentos ilimitados de exámenes simulacros
+                    </div>
+
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle-fill text-success"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Intentos ilimitados de exámenes prácticos por curso
+                    </div>
+
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle-fill text-success"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Acceso ilimitado a solucionario de exámenes rendidos
+                    </div>
+
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle-fill text-success"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Descargas ilimitadas de solucionarios
+                    </div>
+
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle-fill text-success"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Estadísticas reales de tu progreso
+                    </div>
+
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle-fill text-success"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Acceso desde cualquier dispositivo
+                    </div>
+
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle-fill text-success"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Acceso a círculos de estudios
+                    </div>
+
+                    <div class="mt-2 col-2 col-md-1">
+                      <i class="bi bi-check-circle-fill text-success"></i>
+                    </div>
+                    <div class="mt-2 col-10 col-md-11">
+                      Un mes gratis comparado con el plan básico
+                    </div>
+                  </div>
+
+                  <div class="row mt-4 px-5">
+                    <button type="button" class="btn" style="background-color: rgb(111, 66, 193); color: white"
+                      data-bs-toggle="modal" data-bs-target="#resPremuim" (click)="seleccionar_plan('premium')">
+                      <a class="text-reset" style="text-decoration: none">
+                        Adquirir Plan</a>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PLAN BÁSICO -->
+        <div *ngIf="plan == 'basico'">
+          <div class="row">
+            <h4 style="text-align: center; color: rgb(255, 84, 124)" class="fw-bold">
+              Para acceder a todos los beneficios, adquiere el plan que seleccionó
+              previamente
+            </h4>
+
+            <!-- Plan Básico -->
+            <div class="d-flex justify-content-center">
+              <div class="col-12 col-md-6 mt-2">
+                <div class="card shadow" style="border: 1px solid rgb(127, 127, 127)">
+                  <div class="card-body">
+                    <h3 class="card-title fw-bold text-black-50 text-center">
+                      Plan Básico
+                    </h3>
+                    <h1 class="text-black-50 text-center fw-bold">S/. 10 <small><small><del>S/. 15</del></small></small></h1>
+                    <h5 class="text-black-50 text-center">
+                      Plan mensual (1 mes)
+                    </h5>
+                    <div class="row mt-4">
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle text-black-50"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Intentos ilimitados de exámenes simulacros
+                      </div>
+
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle text-black-50"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Intentos ilimitados de exámenes prácticos por curso
+                      </div>
+
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle text-black-50"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Acceso ilimitado a solucionario de exámenes rendidos
+                      </div>
+
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle text-black-50"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Descargas ilimitada de solucionarios
+                      </div>
+
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle text-black-50"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Estadísticas reales de tu progreso
+                      </div>
+
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle text-black-50"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Acceso desde cualquier dispositivo
+                      </div>
+
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle text-black-50"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Acceso los círculos de estudios
+                      </div>
+                    </div>
+
+                    <div class="row mt-4 px-5">
+                      <button type="button" class="btn" style="background-color: rgb(127, 127, 127); color: white"
+                        data-bs-toggle="modal" data-bs-target="#reservacionModal" (click)="seleccionar_plan('basico')">
+                        <a class="text-reset" style="text-decoration: none">
+                          Adquirir Plan</a>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-4">
+            <button type="button" class="btn btn-light" (click)="cambiar_plan()">
+              <i class="bi bi-arrow-clockwise"></i> &nbsp; Cambiar plan
+            </button>
+          </div>
+        </div>
+
+        <!-- PLAN PREMIUM -->
+        <div *ngIf="plan == 'premium'">
+          <div class="row">
+            <h4 style="text-align: center; color: rgb(255, 84, 124)" class="fw-bold">
+              Para acceder a todos los beneficios, adquiere el plan que seleccionó
+              previamente
+            </h4>
+
+            <!-- Plan PREMIUM -->
+            <div class="d-flex justify-content-center">
+              <div class="col-12 col-md-6 mt-2">
+                <div class="card shadow" style="border: 1px solid rgb(111, 66, 193)">
+                  <div class="card-body">
+                    <h3 class="card-title fw-bold text-center" style="color: rgb(111, 66, 193)">
+                      Plan Premium
+                    </h3>
+                    <h1 style="color: rgb(255, 143, 175)" class="text-center fw-bold">
+                      S/. 20 <small class="text-black-50"><small><del>S/. 30</del></small></small>
+                    </h1>
+                    <h5 style="color: rgb(255, 143, 175)" class="text-center">
+                      Plan trimestral (3 meses)
+                    </h5>
+
+                    <div class="row mt-4">
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Intentos ilimitados de exámenes simulacros
+                      </div>
+
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Intentos ilimitados de exámenes prácticos por curso
+                      </div>
+
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Acceso ilimitado a solucionario de exámenes rendidos
+                      </div>
+
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Descargas ilimitadas de solucionarios
+                      </div>
+
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Estadísticas reales de tu progreso
+                      </div>
+
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Acceso desde cualquier dispositivo
+                      </div>
+
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Acceso los círculos de estudios
+                      </div>
+
+                      <div class="mt-2 col-2 col-md-1">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                      </div>
+                      <div class="mt-2 col-10 col-md-11">
+                        Un mes gratis comparado con el plan básico
+                      </div>
+                    </div>
+
+                    <div class="row mt-4 px-5">
+                      <button type="button" class="btn" style="background-color: rgb(111, 66, 193); color: white"
+                        data-bs-toggle="modal" data-bs-target="#resPremuim" (click)="seleccionar_plan('premium')">
+                        <a class="text-reset" style="text-decoration: none">
+                          Adquirir Plan</a>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-4">
+            <button type="button" class="btn btn-light" (click)="cambiar_plan()">
+              <i class="bi bi-arrow-clockwise"></i> &nbsp; Cambiar plan
+            </button>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Mostrar cuentas con reservación -->
+      <ng-container *ngIf="viewButton">
+        <div class="">
+          <div class="text-center">
+            <span class="fw-bold text-danger fs-4">Recuerde: </span> Realizar un
+            pago de
+            <h1 *ngIf="plan == 'basico'" class="fw-bold text-success">
+              S/. {{ pago_basico }}
+            </h1>
+            <h1 *ngIf="plan == 'premium'" class="fw-bold text-success">
+              S/. {{ pago_premium }}
+            </h1>
+            A una de las cuentas mostradas en su perfil y seguir los pasos
+            recomendados. <br />
+
+            <button type="button" class="btn my-4" style="background-color: rgb(127, 127, 127); color: white"
+              [routerLink]="['/usuario/perfil/pagos']">
+              <a class="text-reset" style="text-decoration: none">
+                <i class="bi bi-eye"></i> &nbsp; Ver cuentas
+              </a>
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div style="
+      background: linear-gradient(
+        to bottom,
+        rgba(3, 62, 45, 0) 0%,
+        rgba(3, 62, 45, 1) 100%
+      );
+    ">
+    <div class="container py-5">
+      <h1 style="color: rgb(3, 62, 45)" class="card-title fw-bold text-center mt-0">
+        Accede desde cualquier dispositivo.
+      </h1>
+      <img src="../../../../assets/img/dispositivos.png" class="img-fluid rounded-start rounded-end" alt="..." />
+    </div>
+  </div>
+
+  <!-- Carrusel de comentarios destacados -->
+  <div class="p-3">
+    <h3 class="text-black-50 text-center mb-4">
+      Comentarios destacados de nuestros usuarios
+    </h3>
+
+    <div class="d-flex justify-content-center pb-3">
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel"
+        [ngStyle]="{ width: screenWidth < screenHeight ? '90vw' : '70vw' }">
+        <div class="carousel-inner">
+          <div class="" *ngFor="let item of reviewsDestacados; let indice = index">
+            <div class="carousel-item" [ngClass]="{ active: indice == 0 }" data-bs-interval="3000">
+              <img src="{{ imagen_fondo }}" class="w-100 rounded" alt="..." />
+              <div class="carousel-caption">
+                <h4 class="text-black-50" *ngIf="id != item.user._id">
+                  {{ item.user.nombres }} {{ item.user.apellidos }}
+                </h4>
+                <h4 class="text-black-50 fw-bold" *ngIf="id == item.user._id">
+                  Tu comentario
+                </h4>
+                <p class="text-black" [innerHTML]="item.comentario"></p>
+
+                <h6>
+                  <i class="bi bi-star-fill" [ngClass]="{ 'text-warning': item.estrellas >= 1 }"></i>
+                  <i class="bi bi-star-fill" [ngClass]="{ 'text-warning': item.estrellas >= 2 }"></i>
+                  <i class="bi bi-star-fill" [ngClass]="{ 'text-warning': item.estrellas >= 3 }"></i>
+                  <i class="bi bi-star-fill" [ngClass]="{ 'text-warning': item.estrellas >= 4 }"></i>
+                  <i class="bi bi-star-fill" [ngClass]="{ 'text-warning': item.estrellas >= 5 }"></i>
+                </h6>
+
+                <div class="text-black-50">
+                  <i class="bi bi-calendar-event"></i> &nbsp;
+                  {{ item.createdAt | date }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev fs-6" type="button" data-bs-target="#carouselExampleInterval"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"
+            style="background-color: rgb(148, 148, 148)"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" style="background-color: rgb(148, 148, 148)"
+            aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Básico -->
+  <div class="modal fade" id="reservacionModal" tabindex="-1" aria-labelledby="reservacionModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="reservacionModalLabel">
+            Reservar suscripción
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <div class="row d-flex justify-content-center">
+              <div class="col-12 col-sm-6">
+                Tienes un código de referido? &nbsp;
+
+                <a data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
+                  aria-controls="collapseExample">
+                  <i class="bi bi-info-circle"></i>
+                </a>
+                <div class="collapse" id="collapseExample">
+                  <div class="card card-body">
+                    <p>
+                      Es un código de 6 dígitos que se le proporciona a un
+                      usuario registrado que permite a usuarios nuevos a acceder
+                      a un descuento del
+                      <strong class="text-success fs-5">10% </strong> en
+                      cualquiera de nuestro planes.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="input-group my-3">
+                  <input type="text" class="form-control" placeholder="Ingrese el código" name="codigo_referido"
+                    id="codigo_referido" [(ngModel)]="codigo_referido" aria-label="Ingrese el código"
+                    aria-describedby="button-addon2" maxlength="6" />
+                  <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                    (click)="verificar_codigo_referido()" [disabled]="verificado">
+                    Verificar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            Realizar un pago de
+            <h1 class="fw-bold text-success">S/. {{ pago_basico }}</h1>
+            A una de las siguientes cuentas
+          </div>
+
+          <div class="" *ngIf="!load_cuentas">
+            <ng-container *ngFor="let item of cuentas">
+              <div class="shadow rounded px-3 my-3 py-3" [ngStyle]="{ 'background-color': item.color }">
+                <div class="row pt-3">
+                  <div class="text-center">
+                    <h5 class="fw-bold">
+                      {{ item.banco }}
+                    </h5>
+                  </div>
+                </div>
+
+                <div class="row text-center">
+                  <div class="col-md-4 col-12">
+                    <span class="badge rounded-pill text-bg-light"><strong>Titular: </strong> {{ item.titular }}</span>
+                  </div>
+
+                  <div class="col-md-4 col-12">
+                    <span class="fs-6 mx-3">
+                      <strong>Cuenta: </strong> {{ item.cuenta }}</span>
+                  </div>
+
+                  <div class="col-md-4 col-12">
+                    <span class="fs-6 mx-3">
+                      <strong>CCI: </strong> {{ item.cci }}</span>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="text-danger">
+            <strong>Recuerde: </strong>
+            La reservación no asegura su suscripción, éste se dará cuando
+            hayamos verificado su pago!
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="registrar_pago_basico()">
+            <i class="bi bi-bookmark-heart"></i> &nbsp; Reservar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Premium -->
+  <div class="modal fade" id="resPremuim" tabindex="-1" aria-labelledby="resPremuimLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="resPremuimLabel">
+            Reservar suscripción premium
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <div class="row d-flex justify-content-center">
+              <div class="col-12 col-sm-6">
+                Tienes un código de referido? &nbsp;
+
+                <a data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false"
+                  aria-controls="collapseExample1">
+                  <i class="bi bi-info-circle"></i>
+                </a>
+                <div class="collapse" id="collapseExample1">
+                  <div class="card card-body">
+                    <p>
+                      Es un código de 6 dígitos que se le proporciona a un
+                      usuario registrado que permite a usuarios nuevos a acceder
+                      a un descuento del
+                      <strong class="text-success fs-5">10% </strong> en
+                      cualquiera de nuestro planes.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="input-group my-3">
+                  <input type="text" class="form-control" placeholder="Ingrese el código" name="codigo_referido"
+                    id="codigo_referido" [(ngModel)]="codigo_referido" aria-label="Ingrese el código"
+                    aria-describedby="button-addon2" maxlength="6" />
+                  <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                    (click)="verificar_codigo_referido()" [disabled]="verificado">
+                    Verificar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            Realizar un pago de
+            <h1 class="fw-bold text-success">S/. {{ pago_premium }}</h1>
+            A una de las siguientes cuentas
+          </div>
+
+          <div class="" *ngIf="!load_cuentas">
+            <ng-container *ngFor="let item of cuentas">
+              <div class="shadow rounded px-3 my-3 py-3" [ngStyle]="{ 'background-color': item.color }">
+                <div class="row pt-3">
+                  <div class="text-center">
+                    <h5 class="fw-bold">
+                      {{ item.banco }}
+                    </h5>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4 col-12">
+                    <span class="badge rounded-pill text-bg-light"><strong>Titular: </strong> {{ item.titular }}</span>
+                  </div>
+
+                  <div class="col-md-4 col-12">
+                    <span class="fs-6 mx-3">
+                      <strong>Cuenta: </strong> {{ item.cuenta }}</span>
+                  </div>
+
+                  <div class="col-md-4 col-12">
+                    <span class="fs-6 mx-3">
+                      <strong>CCI: </strong> {{ item.cci }}</span>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="text-danger">
+            <strong>Recuerde: </strong>
+            La reservación no asegura su suscripción, éste se dará cuando
+            hayamos verificado su pago!
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="registrar_pago_premium()">
+            <i class="bi bi-bookmark-heart"></i> &nbsp; Reservar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

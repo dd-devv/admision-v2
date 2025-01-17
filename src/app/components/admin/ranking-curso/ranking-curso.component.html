@@ -1,0 +1,2362 @@
+<app-nav></app-nav>
+
+<div class="container py-4">
+    <app-sidebar></app-sidebar>
+
+    <div class="card shadow mt-4" style="border-color: #F8F8F8;">
+        <h3 class="card-header d-flex justify-content-between">
+            Ranking por curso
+        </h3>
+        <div class="card-body text-center">
+            <div class="accordion" id="accordionExample">
+
+                <!-- ÁLgebra -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Ranking de álgebra
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+
+                            <!-- Álgebra -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosAlgebra.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosAlgebra.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosAlgebra | paginate: { itemsPerPage: 20, currentPage: pAlg }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_algebra(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalAlg-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalAlg-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalAlgLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalAlgLabel">
+                                                                        Historial de
+                                                                        Álgebra:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaAlgebra; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaAlgebra.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pAlg = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anatomía -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Ranking de Anatomía
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Anatomía -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosAnatomia.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosAnatomia.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosAnatomia | paginate: { itemsPerPage: 20, currentPage: pAnat }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_anatomia(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalAnat-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalAnat-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalAnatLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalAnatLabel">
+                                                                        Historial de
+                                                                        Anatomía:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaAnatomia; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaAnatomia.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pAnat = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aritmética -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTree">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
+                            Ranking de Aritmética
+                        </button>
+                    </h2>
+                    <div id="collapseTree" class="accordion-collapse collapse" aria-labelledby="headingTree"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Aritmética -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosAritmetica.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosAritmetica.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosAritmetica | paginate: { itemsPerPage: 20, currentPage: pArit }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_aritmetica(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalArit-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalArit-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalAritLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalAritLabel">
+                                                                        Historial de
+                                                                        Aritmética:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaAritmetica; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaAritmetica.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pArit = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Biología -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Ranking de Biología
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Biología -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosBiologia.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosBiologia.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosBiologia | paginate: { itemsPerPage: 20, currentPage: pBio }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_biologia(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalBio-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalBio-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalBioLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalBioLabel">
+                                                                        Historial de
+                                                                        Biología:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaBiologia; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaBiologia.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pBio = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Economía -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Ranking de Economía
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Economía -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosEconomia.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosEconomia.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosEconomia  | paginate: { itemsPerPage: 20, currentPage: pEco }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_economia(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalEco-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalEco-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalEcoLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalEcoLabel">
+                                                                        Historial de
+                                                                        Economía:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaEconomia; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaEconomia.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pEco = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Educación Cívica -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingSix">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            Ranking de Educación Cívica
+                        </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Educación Cívica -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosEdCivica.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosEdCivica.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosEdCivica | paginate: { itemsPerPage: 20, currentPage: pEdCiv }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_edCivica(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalEdCiv-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalEdCiv-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalEdCivLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalEdCivLabel">
+                                                                        Historial de
+                                                                        Educación Cívica:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaEdCivica; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaEdCivica.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pEdCiv = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Física -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingSeven">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            Ranking de Física
+                        </button>
+                    </h2>
+                    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Física -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosFisica.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosFisica.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosFisica | paginate: { itemsPerPage: 20, currentPage: pFis }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_fisica(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalFis-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalFis-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalFisLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalFisLabel">
+                                                                        Historial de
+                                                                        Física:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaFisica; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaFisica.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pFis = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Geografía -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingEight">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                            Ranking de Geografía
+                        </button>
+                    </h2>
+                    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Geografía -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosGeografia.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosGeografia.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosGeografia | paginate: { itemsPerPage: 20, currentPage: pGeog }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_geografia(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalGeog-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalGeog-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalGeogLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalGeogLabel">
+                                                                        Historial de
+                                                                        Geografía:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaGeografia; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaGeografia.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pGeog = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Geometría -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingNine">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                            Ranking de Geometría
+                        </button>
+                    </h2>
+                    <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Geometría -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosGeometria.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosGeometria.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosGeometria | paginate: { itemsPerPage: 20, currentPage: pGeom }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_geometria(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalGeom-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalGeom-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalGeomLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalGeomLabel">
+                                                                        Historial de
+                                                                        Geometría:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaGeometria; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaGeometria.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pGeom = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historia del Perú -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTen">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                            Ranking de Historia del Perú
+                        </button>
+                    </h2>
+                    <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Historia del Perú -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosHistoriaPeru.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosHistoriaPeru.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosHistoriaPeru | paginate: { itemsPerPage: 20, currentPage: pHP }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_historia_peru(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalHPeru-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalHPeru-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalHPeruLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalHPeruLabel">
+                                                                        Historial de
+                                                                        Historia del Perú:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaHistoriaPeru; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaHistoriaPeru.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pHP = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historia Universal -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingElvn">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseElvn" aria-expanded="false" aria-controls="collapseElvn">
+                            Ranking de Historia Universal
+                        </button>
+                    </h2>
+                    <div id="collapseElvn" class="accordion-collapse collapse" aria-labelledby="headingElvn"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Historia Universal -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosHistoriaUniv.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosHistoriaUniv.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosHistoriaUniv | paginate: { itemsPerPage: 20, currentPage: pHU }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_historia_universal(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalHUniv-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalHUniv-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalHUnivLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalHUnivLabel">
+                                                                        Historial de
+                                                                        Historia Universal:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaHistoriaUniv; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaHistoriaUniv.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pHU = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lenguaje -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTuelve">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTuelve" aria-expanded="false" aria-controls="collapseTuelve">
+                            Ranking de Lenguaje
+                        </button>
+                    </h2>
+                    <div id="collapseTuelve" class="accordion-collapse collapse" aria-labelledby="headingTuelve"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Lenguaje -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosLenguaje.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosLenguaje.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosLenguaje | paginate: { itemsPerPage: 20, currentPage: pLeng }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_lenguaje(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalLeng-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalLeng-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalLengLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalLengLabel">
+                                                                        Historial de
+                                                                        Lenguaje:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaLenguaje; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaLenguaje.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pLeng = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Literatura -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTrteen">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTrteen" aria-expanded="false" aria-controls="collapseTrteen">
+                            Ranking de Literatura
+                        </button>
+                    </h2>
+                    <div id="collapseTrteen" class="accordion-collapse collapse" aria-labelledby="headingTrteen"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Literatura -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosLiteratura.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosLiteratura.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosLiteratura | paginate: { itemsPerPage: 20, currentPage: pLit }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_literatura(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalLit-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalLit-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalLitLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalLitLabel">
+                                                                        Historial de
+                                                                        Literatura:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaLiteratura; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaLiteratura.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pLit = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Química -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFourteen">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
+                            Ranking de Química
+                        </button>
+                    </h2>
+                    <div id="collapseFourteen" class="accordion-collapse collapse" aria-labelledby="headingFourteen"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Química -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosQuimica.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosQuimica.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosQuimica | paginate: { itemsPerPage: 20, currentPage: pQuim }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_quimica(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalQuim-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalQuim-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalQuimLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalQuimLabel">
+                                                                        Historial de
+                                                                        Química:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaQuimica; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaQuimica.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pQuim = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Razonamiento Matemático -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFteen">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFteen" aria-expanded="false" aria-controls="collapseFteen">
+                            Ranking de Razonamiento Matemático
+                        </button>
+                    </h2>
+                    <div id="collapseFteen" class="accordion-collapse collapse" aria-labelledby="headingFteen"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Razonamiento Matemático -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosRazMatematico.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosRazMatematico.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosRazMatematico | paginate: { itemsPerPage: 20, currentPage: pRM }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_razMatematico(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalRMat-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalRMat-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalRMatLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalRMatLabel">
+                                                                        Historial de
+                                                                        Raz. Matemático:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaRazMatematico; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaRazMatematico.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pRM = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Razonamiento Verbal -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingSxteen">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSxteen" aria-expanded="false" aria-controls="collapseSxteen">
+                            Ranking de Razonamiento Verbal
+                        </button>
+                    </h2>
+                    <div id="collapseSxteen" class="accordion-collapse collapse" aria-labelledby="headingSxteen"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Razonamiento Verbal -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosRazVerbal.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosRazVerbal.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosRazVerbal | paginate: { itemsPerPage: 20, currentPage: pRV }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_razVerbal(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalRVer-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalRVer-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalRVerLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalRVerLabel">
+                                                                        Historial de
+                                                                        Raz. Verbal:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaRazVerbal; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaRazVerbal.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pRV = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trigonometría -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingSvnteen">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSvnteen" aria-expanded="false" aria-controls="collapseSvnteen">
+                            Ranking de Trigonometría
+                        </button>
+                    </h2>
+                    <div id="collapseSvnteen" class="accordion-collapse collapse" aria-labelledby="headingSvnteen"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <!-- Trigonometría -->
+                            <div class="text-center" *ngIf="load_data">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                </div>
+                                <h5 class="text-black-50"><small>Cargando...</small></h5>
+                            </div>
+
+                            <ng-container *ngIf="!load_data">
+
+                                <!-- Sin notas -->
+                                <div *ngIf="resultadosTrigonometria.length == 0">
+                                    <div class="alert alert-danger text-center mt-4" role="alert">
+                                        <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                                        Aún no existen notas de nuestros usuarios
+                                    </div>
+                                </div>
+
+                                <!-- Cuando existe más de una nota -->
+                                <div *ngIf="resultadosTrigonometria.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Orden</th>
+                                                    <th scope="col">Nombres</th>
+                                                    <th scope="col">Puntaje</th>
+                                                    <th scope="col">Área</th>
+                                                    <th scope="col">Contactar</th>
+                                                    <th scope="col">Creado <small> <small>user</small>
+                                                        </small> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr
+                                                    *ngFor="let item of resultadosTrigonometria | paginate: { itemsPerPage: 20, currentPage: pTrig }; let indice = index">
+                                                    <th scope="row"> {{indice + 1}} &nbsp;
+                                                        <a (click)="obtener_resultados_trigonometria(item.user._id)"
+                                                            type="button" data-bs-toggle="modal"
+                                                            [attr.data-bs-target]="'#verModalTrig-' + item._id">
+                                                            <i class="bi bi-graph-up-arrow"></i>
+                                                        </a>
+                                                    </th>
+                                                    <td>
+                                                        {{item.user.nombres}} {{item.user.apellidos}}
+                                                    </td>
+                                                    <td> {{item.puntos}} </td>
+                                                    <td> {{item.user.area}} </td>
+                                                    <td> <a href="https://wa.me/51{{item.user.telefono}}"
+                                                            target="_blank">
+                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                        </a> &nbsp;
+                                                        <a href="mailto: {{item.user.email}}" target="_blank">
+                                                            <i class="bi bi-envelope-at text-primary"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <small> {{item.user.createdAt | date}} </small>
+                                                    </td>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="verModalTrig-{{ item._id }}"
+                                                        tabindex="-1" aria-labelledby="verModalTrigLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5 text-black-50"
+                                                                        id="verModalTrigLabel">
+                                                                        Historial de
+                                                                        Trigonometría:
+                                                                        <span class="fw-bold">
+                                                                            {{item.user.nombres}}
+                                                                            {{item.user.apellidos}}
+                                                                        </span>
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="row">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col">Práctica</th>
+                                                                                    <th scope="col">Puntaje</th>
+                                                                                    <th scope="col">Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr
+                                                                                    *ngFor="let item of resultadosPracticaTrigonometria; let indicee = index">
+                                                                                    <th scope="row">{{indicee + 1}}</th>
+                                                                                    <td>{{item.puntos}}</td>
+                                                                                    <td>{{item.createdAt | date}}</td>
+                                                                                </tr>
+                                                                                <tr class="fw-bold"
+                                                                                    style="background-color: rgb(220, 220, 220);">
+                                                                                    <td colspan="2">Promedio</td>
+                                                                                    <td>{{sumatoria /
+                                                                                        resultadosPracticaTrigonometria.length
+                                                                                        |
+                                                                                        number}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <pagination-controls (pageChange)="pTrig = $event" [responsive]="true"
+                                        previousLabel="" nextLabel="">
+                                    </pagination-controls>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,250 @@
+<app-nav></app-nav>
+
+
+<div class="container py-4">
+    <app-sidebar></app-sidebar>
+
+    <!-- Las políticas para el administrador del uso de la plataforma -->
+    <div class="card mt-4 py-4 px-3" style="background-color: rgb(236, 247, 231); border-color: rgb(49, 191, 174);">
+        <h2 style="color: rgb(3, 62, 45);" class="card-title fw-bold text-center mt-0">Políticas del uso de la plataforma para el administrador</h2>
+        
+        <div class="mt-4">
+            <div class="row">
+                <div class="col-1 text-center"><i class="bi bi-check-lg"></i></div>
+                <div class="col-10">
+                    <p class="text-justify"><strong>Uso responsable:</strong> El administrador de la plataforma debe utilizarla de manera
+                        responsable y no abusar de su acceso a la información y los datos de los usuarios.</p>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-1 text-center"><i class="bi bi-check-lg"></i></div>
+                <div class="col-10">
+                    <p class="text-justify"><strong>Confidencialidad:</strong> El administrador debe mantener la confidencialidad de la
+                        información de los usuarios y no divulgarla a terceros sin su consentimiento explícito.</p>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-1 text-center"><i class="bi bi-check-lg"></i></div>
+                <div class="col-10">
+                    <p class="text-justify"><strong>Protección de datos:</strong> El administrador debe tomar medidas de seguridad para
+                        proteger
+                        los datos de los usuarios y evitar su uso no autorizado o ilegal.</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-1 text-center"><i class="bi bi-check-lg"></i></div>
+                <div class="col-10">
+                    <p class="text-justify"><strong>Soporte y atención al cliente:</strong> El administrador debe proporcionar soporte y
+                        atención
+                        al cliente de manera oportuna y efectiva.</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-1 text-center"><i class="bi bi-check-lg"></i></div>
+                <div class="col-10">
+                    <p class="text-justify"><strong>Prohibición de actividades maliciosas:</strong> El administrador no debe realizar
+                        actividades
+                        maliciosas o ilegales en la plataforma, como el cambio de contraseñas o eliminación del usuario.
+                    </p>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-1 text-center"><i class="bi bi-check-lg"></i></div>
+                <div class="col-10">
+                    <p class="text-justify"><strong>Respeto a los usuarios:</strong> El administrador debe respetar los derechos y la
+                        privacidad
+                        de los usuarios de la plataforma, y tratarlos con cortesía y respeto en todas las interacciones.
+                    </p>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-1 text-center"><i class="bi bi-check-lg"></i></div>
+                <div class="col-10">
+                    <p class="text-justify"><strong>Cumplimiento de las leyes:</strong> El administrador debe cumplir con todas las leyes y
+                        regulaciones aplicables, incluyendo la ley de protección de datos personales.</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <hr>
+
+    <!-- Dashboard -->
+    <div class="row mb-5 text-center">
+
+        <div class="my-3">
+            <h4 class="fw-bold">Cantidad de usuarios</h4>
+            <h1> {{cantidad}} </h1>
+        </div>
+
+        <div class="col-12">
+            <h3>Dashboard</h3>
+        </div>
+
+        <div class="col-6 col-sm-3 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row gx-0">
+                        <div class="col">
+                            <h6 class="text-muted mb-2">
+                                Ganancia total
+                            </h6>
+                            <span class="h5 mb-0">
+                                S/. {{ganancia_total}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-sm-3 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h6 class="text-muted mb-2">
+                                Mes actual
+                            </h6>
+                            <span class="h5 mb-0">
+                                S/. {{total_mes}} &nbsp;
+                            </span>
+
+                            <small class="text-success mb-0" *ngIf="total_mes - total_mes_anterior > 0">
+                                + {{(total_mes - total_mes_anterior)*100/total_mes | number}}%
+                                <i class="bi bi-arrow-up"></i>
+                            </small>
+
+                            <small class="text-danger mb-0" *ngIf="total_mes - total_mes_anterior < 0">
+                                {{(total_mes - total_mes_anterior)*100/total_mes | number}}%
+                                <i class="bi bi-arrow-down"></i>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-sm-3 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row gx-0">
+                        <div class="col">
+                            <h6 class="text-muted mb-2">
+                                N° Ventas total
+                            </h6>
+                            <span class="h5 mb-0">
+                                {{count_ventas}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-sm-3 mt-3">
+            <div class="">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row gx-0">
+                            <div class="col">
+                                <h6 class="text-muted mb-2">
+                                    Mes anterior
+                                </h6>
+                                <span class="h5 mb-0">
+                                    S/. {{total_mes_anterior}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-5" style="border: none;">
+        <div style="background-color: rgb(248, 237, 255);">
+            <div class="card-header text-center">
+                <h5 class="fw-bold" style="margin-bottom: 0px; color: rgb(111, 66, 192);">Ingresos por mes</h5>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <canvas id="MyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cantidad de simulacros -->
+    <div class="d-flex justify-content-center text-center pb-3 row">
+        <div class="col-6 col-sm-3">
+            <div class="">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row gx-0">
+                            <div class="col">
+                                <h6 class="text-muted mb-2">
+                                    Mes anterior
+                                </h6>
+                                <span class="h5 mb-0">
+                                    {{total_mes_anterior_sim}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h6 class="text-muted mb-2">
+                                Mes actual
+                            </h6>
+                            <span class="h5 mb-0">
+                                {{total_mes_sim}} &nbsp;
+                            </span>
+
+                            <small class="text-success mb-0" *ngIf="total_mes_sim - total_mes_anterior_sim > 0">
+                                + {{(total_mes_sim - total_mes_anterior_sim)*100/total_mes_sim | number}}%
+                                <i class="bi bi-arrow-up"></i>
+                            </small>
+
+                            <small class="text-danger mb-0" *ngIf="total_mes_sim - total_mes_anterior_sim < 0">
+                                {{(total_mes_sim - total_mes_anterior_sim)*100/total_mes_sim | number}}%
+                                <i class="bi bi-arrow-down"></i>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-5" style="border: none;">
+        <div style="background-color: rgb(221, 255, 236);">
+            <div class="card-header text-center">
+                <h5 class="fw-bold" style="margin-bottom: 0px; color: rgb(20, 203, 139);">Simulacros dados por mes</h5>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <canvas id="MyChartSim"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+<app-nav></app-nav>
+
+<div class="container py-4">
+    <app-sidebar></app-sidebar>
+
+    <!-- Cuando no existe pago -->
+    <div class="card mt-4" *ngIf="pago == undefined"
+        style="border-color: rgb(255, 93, 93); background-color: rgb(255, 215, 215);">
+        <div class="card-body text-center">
+
+            <div class="fs-5" style="color: rgb(255, 93, 93);">
+                <i class="fs-2 bi bi-exclamation-diamond"></i> <br>
+                No existe pago con el ID '<strong>{{id}}</strong>'
+            </div>
+        </div>
+
+        <button class="btn btn-danger" [routerLink]="['/admin/pagos']">
+            <i class="bi bi-arrow-left"></i>
+        </button>
+    </div>
+
+    <!-- Cuando existe pago -->
+    <div *ngIf="pago != undefined" class="card shadow mt-4" style="border-color: #F8F8F8;">
+        <h4 class="card-header">
+            Pago <small class="fw-bold">{{pago._id}}</small>
+        </h4>
+        <div class="card-body">
+            <div class="modal-body table-responsive text-center">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td class="fw-bold">Código: </td>
+                            <td>{{pago._id}}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Transacción: </td>
+                            <td>{{pago.transaccion}}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Subtotal: </td>
+                            <td>{{pago.subtotal}}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Fecha de inicio: </td>
+                            <td>{{pago.createdAt | date}}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Fecha de fin: </td>
+                            <td>{{pago.vencimiento | date}}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Estado: </td>
+                            <td>{{pago.estado}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-3">
+                <!-- Button trigger modal -->
+                <button *ngIf="pago.estado == 'Reservado'" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    [attr.data-bs-target]="'#modalConfirm-' + pago._id">
+                    <i class="bi bi-check2-circle"></i> &nbsp;
+                    Confirmar pago
+                </button>
+            </div>
+
+            <!-- Modal Confirmar pago-->
+            <div class="modal fade" id="modalConfirm-{{ pago._id }}" tabindex="-1" aria-labelledby="modalConfirmLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalConfirmLabel">
+                                Confirmación de pago
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Confirmar pago de <strong>{{ pago._id}}</strong>?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i
+                                    class="bi bi-x-lg"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                (click)="cambiar_estado_confirmado (pago._id)">
+                                <i class="bi bi-check2-circle"></i> &nbsp;
+                                Confirmar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer text-center">
+            <button class="btn btn-success" [routerLink]="['/admin/pagos']">
+                <i class="bi bi-arrow-left"></i>
+            </button>
+        </div>
+    </div>
+</div>

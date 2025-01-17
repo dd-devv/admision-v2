@@ -1,0 +1,127 @@
+<app-nav></app-nav>
+
+<div class="container py-5">
+    <div class="shadow rounded mt-5 p-4">
+        <div class="row">
+            <div class="col-sm-3 col-12 mt-3">
+                <app-sidebar></app-sidebar>
+            </div>
+            <!-- actualizar mis datos -->
+            <div class="col-sm-9 col-12 mt-3">
+                <h3 class="text-center fw-bold py-4" style="color:rgb(6, 170, 115)">ACTUALIZAR MIS DATOS</h3>
+                <!-- Body -->
+                <div class="d-flex">
+                    <div class="flex-fill border-box d-none d-lg-block"
+                        style="width: 5%; border-left: 1px solid rgb(6, 170, 115);">
+                    </div>
+
+                    <div class="flex-fill" style="width: 95%;">
+                        <div class="d-flex justify-content-center">
+                            <div class="p-1 p-sm-1 col-12">
+                                <form #updateForm="ngForm" (ngSubmit)="actualizar(updateForm)">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6">
+                                            <label for="nombres" class="form-label text-black-50">Nombres</label>
+                                            <input type="text" class="form-control" placeholder="Ingrese sus nombres"
+                                                name="nombres" id="nombres" [(ngModel)]="user.nombres" required />
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                            <label for="apellidos" class="form-label text-black-50">Apellidos</label>
+                                            <input type="text" class="form-control" placeholder="Ingrese sus apellidos "
+                                                name="apellidos" id="apellidos" [(ngModel)]="user.apellidos" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-4">
+                                        <div class="col-12 col-sm-6">
+                                            <label for="email" class="form-label text-black-50">Correo</label>
+                                            <input type="email" class="form-control" placeholder="Ingrese su correo"
+                                                name="email" id="email" [(ngModel)]="user.email" disabled />
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                            <label for="telefono" class="form-label text-black-50">Teléfono</label>
+                                            <input type="text" class="form-control" placeholder="Ingrese número"
+                                                name="telefono" id="telefono" [(ngModel)]="user.telefono" required
+                                                maxlength="9" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-4">
+                                        <div class="col-12 col-sm-6">
+                                            <label for="dni" class="form-label text-black-50">DNI</label>
+                                            <input type="text" class="form-control" placeholder="Ingrese su DNI" name="dni"
+                                                id="dni" [(ngModel)]="user.dni" required readonly maxlength="8" />
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                            <label for="f_nacimiento" class="form-label text-black-50">Nacimiento</label>
+                                            <input type="date" class="form-control" placeholder="Ingrese número"
+                                                name="f_nacimiento" id="f_nacimiento" [(ngModel)]="user.f_nacimiento"
+                                                required />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-4">
+                                        <div class="col-12 col-sm-6">
+                                            <label for="genero" class="form-label text-black-50">Género</label>
+                                            <select id="genero" class="form-select" name="genero" [(ngModel)]="user.genero"
+                                                required>
+                                                <option value="" selected disabled>--Seleccione--</option>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Femenino">Femenino</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6">
+                                            <label for="universidad" class="form-label text-black-50">Universidad</label>
+                                            <select id="universidad" class="form-select" name="universidad"
+                                                [(ngModel)]="user.universidad" required (click)="select_universidad()">
+                                                <option selected disabled value="">--Seleccione--</option>
+                                                <option value="{{item.id}}" *ngFor="let item of universidades"> {{item.id}}
+                                                    - {{item.name}} </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-4">
+                                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                            <label for="area" class="form-label text-black-50">Área</label>
+                                            <select id="area" class="form-select" name="area" [(ngModel)]="user.area"
+                                                (click)="select_area()" required>
+                                                <option selected disabled value="">--Seleccione--</option>
+                                                <option *ngFor="let item of areas" value="{{item.name}}"> Área {{item.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                            <label for="escuela" class="form-label text-black-50">Escuela</label>
+                                            <select id="escuela" class="form-select" name="escuela"
+                                                [(ngModel)]="user.escuela" required>
+                                                <option selected disabled value="">--Seleccione--</option>
+                                                <option value="{{item.name}}" *ngFor="let item of escuelas"> {{item.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-grid gap-2 mt-4">
+                                        <button type="submit" class="btn btn-primary"
+                                            [disabled]="updateForm.invalid && valid">
+                                            <i class="bi bi-person-check"></i> &nbsp; Actualizar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

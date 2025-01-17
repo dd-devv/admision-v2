@@ -1,0 +1,239 @@
+<app-nav></app-nav>
+
+<div class="container py-4">
+    <app-sidebar></app-sidebar>
+
+    <div class="card shadow mt-4" style="border-color: #F8F8F8;">
+        <h3 class="card-header d-flex justify-content-between">
+            Lista de usuarios
+            <a class="btn btn-success" [routerLink]="['/admin/usuarios/registrar']">
+                <i class="bi bi-person-add"></i> &nbsp; Registrar
+            </a>
+        </h3>
+        <div class="card-body text-center">
+            <div class="text-center">
+                <!-- Button addon on the right -->
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Buscar por Nombre" name="filtro"
+                        [(ngModel)]="filtro" (keyup)="filtrar()" required />
+
+                    <a class="btn btn-primary bi-search" (click)="filtrar()">
+                    </a>
+
+                    <!-- <button class="btn btn-success bi-file-earmark-excel-fill mx-2" type="button" (click)="download_excel()">
+                        Exportar
+                    </button> -->
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover text-center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+
+                    <!-- Precargador de página -->
+                    <tbody *ngIf="load_data == true">
+                        <tr>
+                            <td class="text-center" colspan="5">
+                                <!-- Custom size border spinner -->
+                                <div class="text-center">
+                                    <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+                                    </div>
+                                    <h5 class="text-black-50"><small>Cargando...</small></h5>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    <ng-container *ngIf="load_data == false">
+                        <tbody
+                            *ngFor="let item of usuarios | paginate: { itemsPerPage: 20, currentPage: p }; let indice = index">
+                            <tr>
+                                <td>{{ indice + 1 }}</td>
+                                <td>{{ item.nombres }}</td>
+                                <td>{{ item.apellidos }}</td>
+                                <td>
+                                    <a type="button" class="text-success m-2" data-bs-toggle="modal"
+                                        [attr.data-bs-target]="'#ver-' + item._id" (click)="obtener_user(item._id)">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </a>
+                                    <a class="text-primary m-2" [routerLink]="['/admin/usuarios', item._id]"
+                                        style="text-decoration: none;">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </a>
+                                    <a type="button" class="text-danger m-2" data-bs-toggle="modal"
+                                        [attr.data-bs-target]="'#delete-' + item._id">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a>
+
+                                    <!-- Modal Eliminar-->
+                                    <div class="modal fade" id="delete-{{ item._id }}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel1">
+                                                        Eliminar al cliente {{ item.nombres }}
+                                                        {{ item.apellidos }}
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Desea eliminar de forma permanente?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal"> <i class="bi bi-x-lg"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger"
+                                                        (click)="eliminar(item._id)">
+                                                        <i class="bi bi-trash"></i> &nbsp; Eliminar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal Ver-->
+                                    <div class="modal fade" id="ver-{{ item._id }}" tabindex="-1"
+                                        aria-labelledby="verModalLabel1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5 fw-bold text-black-50"
+                                                        id="verModalLabel1">
+                                                        Detalles de cliente
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="modal-body table-responsive">
+                                                        <table class="table table-borderless">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="fw-bold">ID: </td>
+                                                                    <td>{{user._id}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Nombres: </td>
+                                                                    <td>{{user.nombres}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Apellidos: </td>
+                                                                    <td>{{user.apellidos}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Género: </td>
+                                                                    <td>{{user.genero}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">DNI: </td>
+                                                                    <td>{{user.dni}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Teléfono: </td>
+                                                                    <td>{{user.telefono}} &nbsp;
+
+                                                                        <!-- Whatstapp-->
+                                                                        <a href="https://wa.me/51{{user.telefono}}"
+                                                                            target="_blank">
+                                                                            <i class="bi bi-whatsapp text-success"></i>
+                                                                        </a> &nbsp;
+
+                                                                        <!-- Teléfono-->
+                                                                        <a href="tel:{{user.telefono}}" target="_blank">
+                                                                            <i
+                                                                                class="bi bi-telephone-forward text-primary"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Correo: </td>
+                                                                    <td>{{user.email}}
+                                                                        &nbsp;
+                                                                        <a href="mailto: {{user.email}}"
+                                                                            target="_blank">
+                                                                            <i class="bi bi-envelope-at text-danger"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Nacimiento: </td>
+                                                                    <td>{{user.f_nacimiento | date}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Universidad: </td>
+                                                                    <td>{{user.universidad}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Área: </td>
+                                                                    <td>{{user.area}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Carrera: </td>
+                                                                    <td>{{user.carrera}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Rol: </td>
+                                                                    <td>
+                                                                        <span class="badge rounded-pill bg-danger"
+                                                                            *ngIf="user.role == 'ADMIN'">
+                                                                            {{user.role}}
+                                                                        </span>
+                                                                        <span class="badge rounded-pill text-bg-secondary"
+                                                                            *ngIf="user.role == 'USER'">
+                                                                            {{user.role}}
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Verificado: </td>
+                                                                    <td>{{user.estado}}
+                                                                        <span class="badge rounded-pill bg-success"
+                                                                            *ngIf="user.verificado">
+                                                                            Verificado
+                                                                        </span>
+                                                                        <span class="badge rounded-pill text-bg-danger"
+                                                                            *ngIf="!user.verificado">
+                                                                            No verificado
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="fw-bold">Creación: </td>
+                                                                    <td>{{user.createdAt | date}}</td>
+                                                                </tr>
+                                                                <tr *ngIf="user.codigo_referido">
+                                                                    <td class="fw-bold">Cód. Referido: </td>
+                                                                    <td>{{user.codigo_referido}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </ng-container>
+
+                </table>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <pagination-controls (pageChange)="p = $event" [responsive]="true" previousLabel="" nextLabel="">
+            </pagination-controls>
+        </div>
+    </div>
+</div>

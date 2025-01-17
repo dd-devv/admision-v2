@@ -1,0 +1,201 @@
+<app-nav></app-nav>
+
+<div class="container py-5">
+    <div class="shadow rounded mt-5 p-4">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <!-- pregunta 01 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header ">
+                    <button style="font-size: 20px;" class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                        aria-controls="flush-collapseOne">
+                        ¿Cómo puedo acceder a las prácticas y simulacros de exámenes pasados?
+                    </button>
+                </h2>
+
+                <div style="text-align: justify;" id="flush-collapseOne" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        Para poder acceder a las prácticas o simulacros, se tiene que cumplir dos requisitos: <br>
+                        <ol>
+                            <li>Tener una cuenta en el sitio web <a [routerLink]="['/registro']">aquí</a>. <em>"si aún
+                                    no tienes una cuenta </em>
+                                <a [routerLink]="['/login']">ingresa aquí</a>
+                            </li>
+                            <li>Haber comprado una suscripción de <strong>Plan básico</strong> o <strong>Plan
+                                    Premium</strong>. <em>"Si aún
+                                    no tienes una suscripción, puedes revisar los planes desde el siguiente enlace:"
+                                </em>
+                                <a [routerLink]="['/']">Planes de suscripción</a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- pregunta 02 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button style="font-size: 20px;" class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                        aria-controls="flush-collapseTwo">
+                        ¿Cuántos intentos puedo hacer para cada práctica o simulacro?
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        No tienes un límite de intentos en prácticas ni en simulacros, la úna difrencia es en los
+                        planes.
+
+                        <li>Con <strong>Plan Básico</strong> tienes 1 mes de acceso ilimitado, a sólo
+                            <strong>s/.15</strong> soles.
+                        </li>
+                        <li>Con <strong>Plan Premium</strong> tienes 3 meses de acceso ilimitado, a sólo
+                            <strong>s/.30</strong> soles.
+                        </li>
+                    </div>
+                </div>
+            </div>
+
+            <!-- pregunta 03 -->
+            <div class="accordion-item">
+                <h2 class="accordion-heade">
+                    <button style="font-size: 20px;" class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false"
+                        aria-controls="flush-collapseThree">
+                        ¿Cómo puedo obtener las respuestas correctas después de hacer una práctica o simulacro?
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        Despúes de finalizar práctica o finalizar simulacro, en la parte inferior puedes visualizar el
+                        botón de <strong>Solucionario</strong>, haciendo click en el botón puede visualizar o descargar
+                        las respuestas del examen.
+                    </div>
+                </div>
+            </div>
+
+            <!-- pregunta 04 -->
+            <div class="accordion-item">
+                <h2 class="accordion-heade">
+                    <button style="font-size: 20px;" class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false"
+                        aria-controls="flush-collapseFour">
+                        ¿Cuánto tiempo tengo para completar un simulacro?
+                    </button>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        Para poder completar un simulacro tipo admisión tienes <strong>1h : 30m : 00s</strong> (1 hora y
+                        30 minutos), que es la duración de un examen real de la Universidad Nacional de San Cristóbal de
+                        Huamanga.
+                    </div>
+                </div>
+            </div>
+
+            <!-- pregunta 05 -->
+            <div class="accordion-item">
+                <h2 class="accordion-heade">
+                    <button style="font-size: 20px;" class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false"
+                        aria-controls="flush-collapseFive">
+                        ¿Puedo acceder a las prácticas y simulacros desde cualquier dispositivo?
+                    </button>
+                </h2>
+                <div id="flush-collapseFive" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        Porsupuesto, puedes acceder desde cualquier dispositivo, ya sea móvil, tablet, laptop o pc.
+                        Nuestro sitio web se adecua a cualquier dispositivo.
+                    </div>
+                </div>
+            </div>
+
+            <!-- pregunta 06 -->
+            <div class="accordion-item">
+                <h2 class="accordion-heade">
+                    <button style="font-size: 20px;" class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false"
+                        aria-controls="flush-collapseSix">
+                        ¿Cuántas prácticas y simulacros están disponibles en la plataforma?
+                    </button>
+                </h2>
+                <div id="flush-collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        En nuestro sitio web hay muchas preguntas tipo admisión, puesto que las preguntas son de
+                        exámenes pasados de CEPRE y de admisión (exonerados y ordinario). Los exámenes son desde 2010
+                        hasta la actualidad.
+                    </div>
+                </div>
+            </div>
+
+            <!-- pregunta 07 -->
+            <div class="accordion-item">
+                <h2 class="accordion-heade">
+                    <button style="font-size: 20px;" class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false"
+                        aria-controls="flush-collapseSeven">
+                        ¿Puedo unirme a un grupo de estudio o círculo de estudio para compartir mi experiencia con otros
+                        estudiantes?
+                    </button>
+                </h2>
+                <div id="flush-collapseSeven" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        Nuestro sitio web ya cuenta con grupos de estudio (círculo de estudios), si ya eres usuario del
+                        sitio web ya puedes unirte a través de tu <strong>perfil de usuario</strong> ahí encontrarás el
+                        enlace de cada curso a la cual deseas unirte. Hemos creado los grupos de estudio porque nos
+                        preocupamos por tu aprendizaje e incentivamos a que puedas compatir tus conocimientos con otros
+                        estudiantes, recuerda que <em>Enseñar es aprender dos veces.</em>
+                    </div>
+                </div>
+            </div>
+
+            <!-- pregunta 08 -->
+            <div class="accordion-item">
+                <h2 class="accordion-heade">
+                    <button style="font-size: 20px;" class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-collapseEight" aria-expanded="false"
+                        aria-controls="flush-collapseEight">
+                        ¿Cual es el beneficio de comprar el plan premium?
+                    </button>
+                </h2>
+                <div id="flush-collapseEight" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        Por comprar el <strong>Plan Premium</strong> te llevas un mes gratis a comparación del <em>plan
+                            básico</em>, es decir que en 3 meses con el plan básico tienes un monto de s/.45 pero con el
+                        <strong>Plan Premium</strong> por 3 meses te sale a sólo s/.30.
+                    </div>
+                </div>
+            </div>
+
+            <!-- pregunta 09 -->
+            <div class="accordion-item">
+                <h2 class="accordion-heade">
+                    <button style="font-size: 20px;" class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false"
+                        aria-controls="flush-collapseNine">
+                        ¿Tiene costo?
+                    </button>
+                </h2>
+                <div id="flush-collapseNine" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        Si eres un usuario invitado no tiene costo S/ 0.00, por otro lado tenemos planes mensuales desde
+                        S/ 15.00 y planes trimestrales desde S/. 30.00.
+
+                        Si quieres probar nuestros servicios antes de comprar cualquiera de los planes, te invitamos a
+                        realizar la prueba gratuita, la cual no necesita tener una cuenta. La prueba puedes encontrar <a
+                            [routerLink]="['/']">aquí</a>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

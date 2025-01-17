@@ -1,0 +1,2614 @@
+<app-nav></app-nav>
+
+<div class="container py-5">
+    <div class="shadow rounded mt-5 p-4">
+
+        <!-- Sin pago -->
+        <ng-container *ngIf="!activePagos && !viewButton">
+            <!-- Sin plan seleccionado -->
+            <div *ngIf="plan != 'basico' && plan != 'premium'">
+                <div class="row mb-3">
+
+                  <h4 style="text-align: center; color: rgb(255, 84, 124);" class="fw-bold">
+                    Para acceder a todos los beneficios, adquiere uno de nuestros paquetes Premium
+                  </h4>
+
+                  <!-- Plan Básico -->
+                  <div class="col-12 col-md-6 mt-2">
+                    <div class="card shadow" style="border: 1px solid rgb(127, 127, 127);">
+                      <div class="card-body">
+                        <h3 class="card-title fw-bold text-black-50 text-center">Plan Básico</h3>
+                        <h1 class="text-black-50 text-center fw-bold">S/. 10 <small><small><del>S/. 15</del></small></small></h1>
+                        <h5 class="text-black-50 text-center">Plan mensual (1 mes)</h5>
+                        <div class="row mt-4">
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle text-black-50"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Intentos ilimitados de exámenes simulacros
+                          </div>
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle text-black-50"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Intentos ilimitados de exámenes prácticos por curso
+                          </div>
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle text-black-50"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Acceso ilimitado a solucionario de exámenes rendidos
+                          </div>
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle text-black-50"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Descargas ilimitada de solucionarios
+                          </div>
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle text-black-50"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Estadísticas reales de tu progreso
+                          </div>
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle text-black-50"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Acceso desde cualquier dispositivo
+                          </div>
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle text-black-50"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Acceso los círculos de estudios
+                          </div>
+                        </div>
+
+                        <div class="row mt-4 px-5">
+                          <button type="button" class="btn" style="background-color: rgb(127, 127, 127); color: white"
+                            data-bs-toggle="modal" data-bs-target="#reservacionModal" (click)="seleccionar_plan('basico')">
+                            <a class="text-reset" style="text-decoration:none;">
+                              Adquirir Plan</a>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Plan PREMIUM -->
+                  <div class="col-12 col-md-6 mt-2">
+                    <div class="card shadow" style="border: 1px solid rgb(111, 66, 193);">
+                      <div class="card-body">
+                        <h3 class="card-title fw-bold text-center" style="color: rgb(111, 66, 193);">Plan Premium</h3>
+                        <h1 style="color: rgb(255, 143, 175);" class="text-center fw-bold">S/. 20 <small class="text-black-50"><small><del>S/. 30</del></small></small></h1>
+                        <h5 style="color: rgb(255, 143, 175);" class="text-center">Plan trimestral (3 meses)</h5>
+
+                        <div class="row mt-4">
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle-fill text-success"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Intentos ilimitados de exámenes simulacros
+                          </div>
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle-fill text-success"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Intentos ilimitados de exámenes prácticos por curso
+                          </div>
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle-fill text-success"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Acceso ilimitado a solucionario de exámenes rendidos
+                          </div>
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle-fill text-success"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Descargas ilimitadas de solucionarios
+                          </div>
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle-fill text-success"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Estadísticas reales de tu progreso
+                          </div>
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle-fill text-success"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Acceso desde cualquier dispositivo
+                          </div>
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle-fill text-success"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Acceso los círculos de estudios
+                          </div>
+
+                          <div class="mt-2 col-2 col-md-1">
+                            <i class="bi bi-check-circle-fill text-success"></i>
+                          </div>
+                          <div class="mt-2 col-10 col-md-11">
+                            Un mes gratis comparado con el plan básico
+                          </div>
+                        </div>
+
+                        <div class="row mt-4 px-5">
+                          <button type="button" class="btn" style="background-color: rgb(111, 66, 193); color: white"
+                            data-bs-toggle="modal" data-bs-target="#resPremuim" (click)="seleccionar_plan('premium')">
+                            <a class="text-reset" style="text-decoration:none;">
+                              Adquirir Plan</a>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- PLAN BÁSICO -->
+              <div *ngIf="plan == 'basico'">
+                <div class="row">
+
+                  <h4 style="text-align: center; color: rgb(255, 84, 124);" class="fw-bold">
+                    Para acceder a todos los beneficios, adquiere el plan que seleccionó previamente
+                  </h4>
+
+                  <!-- Plan Básico -->
+                  <div class="d-flex justify-content-center">
+                    <div class="col-12 col-md-6 mt-2">
+                      <div class="card shadow" style="border: 1px solid rgb(127, 127, 127);">
+                        <div class="card-body">
+                          <h3 class="card-title fw-bold text-black-50 text-center">Plan Básico</h3>
+                          <h1 class="text-black-50 text-center fw-bold">S/. 10 <small><small><del>S/. 15</del></small></small></h1>
+                          <h5 class="text-black-50 text-center">Plan mensual (1 mes)</h5>
+                          <div class="row mt-4">
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle text-black-50"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Intentos ilimitados de exámenes simulacros
+                            </div>
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle text-black-50"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Intentos ilimitados de exámenes prácticos por curso
+                            </div>
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle text-black-50"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Acceso ilimitado a solucionario de exámenes rendidos
+                            </div>
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle text-black-50"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Descargas ilimitada de solucionarios
+                            </div>
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle text-black-50"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Estadísticas reales de tu progreso
+                            </div>
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle text-black-50"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Acceso desde cualquier dispositivo
+                            </div>
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle text-black-50"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Acceso los círculos de estudios
+                            </div>
+                          </div>
+
+                          <div class="row mt-4 px-5">
+                            <button type="button" class="btn" style="background-color: rgb(127, 127, 127); color: white"
+                            data-bs-toggle="modal" data-bs-target="#reservacionModal" (click)="seleccionar_plan('basico')">
+                            <a class="text-reset" style="text-decoration:none;">
+                              Adquirir Plan</a>
+                          </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="button" class="btn btn-light" (click)="cambiar_plan()"> <i class="bi bi-arrow-clockwise"></i> &nbsp;
+                        Cambiar plan
+                    </button>
+                </div>
+              </div>
+
+
+              <!-- PLAN PREMIUM -->
+              <div *ngIf="plan == 'premium'">
+                <div class="row">
+
+                  <h4 style="text-align: center; color: rgb(255, 84, 124);" class="fw-bold">
+                    Para acceder a todos los beneficios, adquiere el plan que seleccionó previamente
+                  </h4>
+
+                  <!-- Plan PREMIUM -->
+                  <div class="d-flex justify-content-center">
+                    <div class="col-12 col-md-6 mt-2">
+                      <div class="card shadow" style="border: 1px solid rgb(111, 66, 193);">
+                        <div class="card-body">
+                          <h3 class="card-title fw-bold text-center" style="color: rgb(111, 66, 193);">Plan Premium</h3>
+                          <h1 style="color: rgb(255, 143, 175);" class="text-center fw-bold">S/. 20 <small class="text-black-50"><small><del>S/. 30</del></small></small></h1>
+                          <h5 style="color: rgb(255, 143, 175);" class="text-center">Plan trimestral (3 meses)</h5>
+
+                          <div class="row mt-4">
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle-fill text-success"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Intentos ilimitados de exámenes simulacros
+                            </div>
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle-fill text-success"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Intentos ilimitados de exámenes prácticos por curso
+                            </div>
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle-fill text-success"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Acceso ilimitado a solucionario de exámenes rendidos
+                            </div>
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle-fill text-success"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Descargas ilimitadas de solucionarios
+                            </div>
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle-fill text-success"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Estadísticas reales de tu progreso
+                            </div>
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle-fill text-success"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Acceso desde cualquier dispositivo
+                            </div>
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle-fill text-success"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Acceso los círculos de estudios
+                            </div>
+
+                            <div class="mt-2 col-2 col-md-1">
+                              <i class="bi bi-check-circle-fill text-success"></i>
+                            </div>
+                            <div class="mt-2 col-10 col-md-11">
+                              Un mes gratis comparado con el plan básico
+                            </div>
+                          </div>
+
+                          <div class="row mt-4 px-5">
+                            <button type="button" class="btn" style="background-color: rgb(111, 66, 193); color: white"
+                            data-bs-toggle="modal" data-bs-target="#resPremuim" (click)="seleccionar_plan('premium')">
+                            <a class="text-reset" style="text-decoration:none;">
+                              Adquirir Plan</a>
+                          </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="button" class="btn btn-light" (click)="cambiar_plan()"> <i class="bi bi-arrow-clockwise"></i> &nbsp;
+                        Cambiar plan
+                    </button>
+                </div>
+              </div>
+        </ng-container>
+
+        <!-- Mostrar cuentas con reservación -->
+        <ng-container *ngIf="viewButton">
+            <div class="">
+                <div class="text-center">
+                    <span class="fw-bold text-danger fs-4">Recuerde: </span> Realizar un pago de
+                    <h1 *ngIf="plan == 'basico'" class="fw-bold text-success">S/. {{pago_basico}}</h1>
+                    <h1 *ngIf="plan == 'premium'" class="fw-bold text-success">S/. {{pago_premium}}</h1>
+                     A una de las cuentas mostradas en su perfil y seguir los pasos recomendados. <br>
+
+                     <button type="button" class="btn my-4" style="background-color: rgb(127, 127, 127); color: white"
+                            [routerLink]="['/usuario/perfil/pagos']">
+                            <a class="text-reset" style="text-decoration:none;">
+                                <i class="bi bi-eye"></i> &nbsp; Ver cuentas
+                            </a>
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- Con pago -->
+        <ng-container *ngIf="activePagos">
+            
+            
+        <div class="text-center">
+            <div *ngIf="!load_data && tiempo.getTime() > 0" class="mt-5 tiempo fixed-top"
+                style="background-color: #FFF;">
+                Tiempo restante:
+                <span class="fw-bold" [ngStyle]="{'color': tiempo.getTime() < 600000 ? 'red' : 'green'}"
+                    [ngClass]="{'fs-4' : tiempo.getTime() < 600000}">
+                    {{getTiempoFormateado(tiempo)}}
+                </span>
+            </div>
+        </div>
+
+        <h5 class="text-center mb-4">¡Desarrolle las siguientes preguntas en el menor tiempo posible!</h5>
+
+        <ng-container *ngIf="!view_button">
+            <div class="text-center mt-4">
+                <button *ngIf="!iniciando" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalInfo"
+                    class="btn btn-success">Iniciar examen &nbsp;
+                    <i class="bi bi-forward-fill"></i>
+                </button>
+            </div>
+            <div class="text-center">
+                <div class="spinner-grow text-secondary mt-3" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="text-center mt-4">
+            <button *ngIf="iniciando" class="btn btn-secondary" type="button" disabled>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                Iniciando...
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalInfo" tabindex="-1" aria-labelledby="exampleModalInfoLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalInfoLabel">Lo que debes saber del examen</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <img src="../../../../assets/img/info-puntajes.png" style="width: 80vw;"> -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                                <tbody>
+                                    <tr class="bg-secondary text-white">
+                                        <th rowspan="3">DISTRIBUCIÓN DE PREGUNTAS</th>
+                                        <th colspan="3">ÁREA ACADÉMICA I</th>
+                                        <th colspan="3">ÁREA ACADÉMICA II</th>
+                                        <th colspan="3">ÁREA ACADÉMICA III</th>
+                                    </tr>
+                                    <tr class="bg-secondary text-white">
+                                        <th colspan="3">CIENCIAS</th>
+                                        <th colspan="3">LETRAS</th>
+                                        <th colspan="3">BIOMÉDICAS</th>
+                                    </tr>
+                                    <tr class="bg-secondary text-white">
+                                        <th>N° Preg</th>
+                                        <th>Punt</th>
+                                        <th>Total</th>
+                                        <th>N° Preg</th>
+                                        <th>Punt</th>
+                                        <th>Total</th>
+                                        <th>N° Preg</th>
+                                        <th>Punt</th>
+                                        <th>Total</th>
+                                    </tr>
+                                    <tr class="bg-secondary text-white">
+                                        <th colspan="10">I. ÁREA CURRICULAR: COMUNICACIÓN</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Razonamiento verbal
+                                        </th>
+                                        <th>4</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">12</th>
+                                        <th>4</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">12</th>
+                                        <th>4</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">12</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Lenguaje</th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Literatura</th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                    </tr>
+                                    <tr class="bg-secondary text-white">
+                                        <th colspan="10">II. ÁREA CURRICULAR: MATEMÁTICA</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Razonamiento matemático</th>
+                                        <th>4</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">12</th>
+                                        <th>4</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">8</th>
+                                        <th>4</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">8</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Aritmética</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                        <th>3</th>
+                                        <th>1</th>
+                                        <th style="background-color: #e0e0e0;">3</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Álgebra</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Geometria</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                        <th>2</th>
+                                        <th>1</th>
+                                        <th style="background-color: #e0e0e0;">2</th>
+                                        <th>2</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">4</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Geometria</th>
+                                        <th>2</th>
+                                        <th>1</th>
+                                        <th style="background-color: #e0e0e0;">2</th>
+                                        <th>2</th>
+                                        <th>1</th>
+                                        <th style="background-color: #e0e0e0;">2</th>
+                                        <th>2</th>
+                                        <th>1</th>
+                                        <th style="background-color: #e0e0e0;">2</th>
+                                    </tr>
+                                    <tr class="bg-secondary text-white">
+                                        <th colspan="10">III. ÁREA CURRICULAR: CIENCIA Y
+                                            TECNOLOGÍA</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Física</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Química</th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Biología</th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Anatomía</th>
+                                        <th>3</th>
+                                        <th>1</th>
+                                        <th style="background-color: #e0e0e0;">3</th>
+                                        <th>3</th>
+                                        <th>1</th>
+                                        <th style="background-color: #e0e0e0;">3</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                    </tr>
+                                    <tr class="bg-secondary text-white">
+                                        <th colspan="10">IV. ÁREA CURRICULAR: CIENCIAS SOCIALES
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>Historia Universal
+                                        </th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Historia del Perú</th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Geografía y ambiente</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Economía
+                                        </th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th style="background-color: #e0e0e0;">6</th>
+                                    </tr>
+                                    <tr class="bg-secondary text-white">
+                                        <th colspan="10">V. ÁREA CURRICULAR: DESARROLLO
+                                            PERSONAL, CIUDADANÍA Y CÍVICA</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Formación ciudadana y cívica</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                        <th>3</th>
+                                        <th>3</th>
+                                        <th style="background-color: #e0e0e0;">9</th>
+                                    </tr>
+                                    <tr class="bg-secondary text-white">
+                                        <th>TOTAL DE PREGUNTAS Y PUNTAJE
+                                        </th>
+                                        <th>50</th>
+                                        <th></th>
+                                        <th>120</th>
+                                        <th>50</th>
+                                        <th></th>
+                                        <th>120</th>
+                                        <th>50</th>
+                                        <th></th>
+                                        <th>120</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                            (click)="iniciar()">Iniciar examen &nbsp;
+                            <i class="bi bi-forward-fill"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pregutas de los cursos -->
+        <ng-container *ngIf="!load_data">
+            <!-- Ágebra -->
+            <div class="card" style="border-color: rgb(0, 205, 123);">
+                <div class="card-header text-center fw-bold"
+                    style="background-color: rgb(212, 255, 237); color: rgb(0, 205, 123);">
+                    Álgebra &nbsp; <i class="fs-5 bi bi-superscript"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasAlgebra; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 1}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_a-{{indice}}"
+                                    (change)="agregarMarcado(indice, item.alt_a[0])">
+                                <label class="form-check-label" for="alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_b-{{indice}}"
+                                    (change)="agregarMarcado(indice, item.alt_b[0])">
+                                <label class="form-check-label" for="alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_c-{{indice}}"
+                                    (change)="agregarMarcado(indice, item.alt_c[0])">
+                                <label class="form-check-label" for="alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_d-{{indice}}"
+                                    (change)="agregarMarcado(indice, item.alt_d[0])">
+                                <label class="form-check-label" for="alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_e-{{indice}}"
+                                    (change)="agregarMarcado(indice, item.alt_e[0])">
+                                <label class="form-check-label" for="alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Anatomía -->
+            <div class="card mt-3" style="border-color: rgb(255, 67, 73);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(255, 67, 73); background-color: rgb(255, 219, 219);">
+                    Anatomía &nbsp; <i class="fs-5 bi bi-lungs"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasAnatomia; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 4}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="anat-alt-{{indice}}"
+                                    id="anat-alt_a-{{indice}}" (change)="agregarMarcado(indice + 3, item.alt_a[0])">
+                                <label class="form-check-label" for="anat-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="anat-alt-{{indice}}"
+                                    id="anat-alt_b-{{indice}}" (change)="agregarMarcado(indice + 3, item.alt_b[0])">
+                                <label class="form-check-label" for="anat-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="anat-alt-{{indice}}"
+                                    id="anat-alt_c-{{indice}}" (change)="agregarMarcado(indice + 3, item.alt_c[0])">
+                                <label class="form-check-label" for="anat-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="anat-alt-{{indice}}"
+                                    id="anat-alt_d-{{indice}}" (change)="agregarMarcado(indice + 3, item.alt_d[0])">
+                                <label class="form-check-label" for="anat-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="anat-alt-{{indice}}"
+                                    id="anat-alt_e-{{indice}}" (change)="agregarMarcado(indice + 3, item.alt_e[0])">
+                                <label class="form-check-label" for="anat-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Aritmética -->
+            <div class="card mt-3" style="border-color: rgb(20, 211, 221);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(20, 211, 221); background-color: rgb(219, 253, 255);">
+                    Aritmética &nbsp; <i class="bi bi-plus-slash-minus"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasAritmetica; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 7}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="arit-alt-{{indice}}"
+                                    id="arit-alt_a-{{indice}}" (change)="agregarMarcado(indice + 6, item.alt_a[0])">
+                                <label class="form-check-label" for="arit-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="arit-alt-{{indice}}"
+                                    id="arit-alt_b-{{indice}}" (change)="agregarMarcado(indice + 6, item.alt_b[0])">
+                                <label class="form-check-label" for="arit-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="arit-alt-{{indice}}"
+                                    id="arit-alt_c-{{indice}}" (change)="agregarMarcado(indice + 6, item.alt_c[0])">
+                                <label class="form-check-label" for="arit-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="arit-alt-{{indice}}"
+                                    id="arit-alt_d-{{indice}}" (change)="agregarMarcado(indice + 6, item.alt_d[0])">
+                                <label class="form-check-label" for="arit-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="arit-alt-{{indice}}"
+                                    id="arit-alt_e-{{indice}}" (change)="agregarMarcado(indice + 6, item.alt_e[0])">
+                                <label class="form-check-label" for="arit-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Biología -->
+            <div class="card mt-3" style="border-color: rgb(13, 186, 7);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(13, 186, 7); background-color: rgb(220, 255, 219);">
+                    Biología &nbsp; <i class="bi bi-bug"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasBiologia; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 10}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="bio-alt-{{indice}}"
+                                    id="bio-alt_a-{{indice}}" (change)="agregarMarcado(indice + 9, item.alt_a[0])">
+                                <label class="form-check-label" for="bio-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="bio-alt-{{indice}}"
+                                    id="bio-alt_b-{{indice}}" (change)="agregarMarcado(indice + 9, item.alt_b[0])">
+                                <label class="form-check-label" for="bio-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="bio-alt-{{indice}}"
+                                    id="bio-alt_c-{{indice}}" (change)="agregarMarcado(indice + 9, item.alt_c[0])">
+                                <label class="form-check-label" for="bio-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="bio-alt-{{indice}}"
+                                    id="bio-alt_d-{{indice}}" (change)="agregarMarcado(indice + 9, item.alt_d[0])">
+                                <label class="form-check-label" for="bio-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="bio-alt-{{indice}}"
+                                    id="bio-alt_e-{{indice}}" (change)="agregarMarcado(indice + 9, item.alt_e[0])">
+                                <label class="form-check-label" for="bio-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Economía -->
+            <div class="card mt-3" style="border-color: rgb(239, 180, 32);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(239, 180, 32); background-color: rgb(255, 245, 219);">
+                    Economía &nbsp; <i class="bi bi-currency-euro"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasEconomia; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 13}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="eco-alt-{{indice}}"
+                                    id="eco-alt_a-{{indice}}" (change)="agregarMarcado(indice + 12, item.alt_a[0])">
+                                <label class="form-check-label" for="eco-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="eco-alt-{{indice}}"
+                                    id="eco-alt_b-{{indice}}" (change)="agregarMarcado(indice + 12, item.alt_b[0])">
+                                <label class="form-check-label" for="eco-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="eco-alt-{{indice}}"
+                                    id="eco-alt_c-{{indice}}" (change)="agregarMarcado(indice + 12, item.alt_c[0])">
+                                <label class="form-check-label" for="eco-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="eco-alt-{{indice}}"
+                                    id="eco-alt_d-{{indice}}" (change)="agregarMarcado(indice + 12, item.alt_d[0])">
+                                <label class="form-check-label" for="eco-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="eco-alt-{{indice}}"
+                                    id="eco-alt_e-{{indice}}" (change)="agregarMarcado(indice + 12, item.alt_e[0])">
+                                <label class="form-check-label" for="eco-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Educación Cívica -->
+            <div class="card mt-3" style="border-color: rgb(203, 33, 251);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(203, 33, 251); background-color: rgb(247, 219, 255);">
+                    Educación Cívica &nbsp; <i class="bi bi-bank"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasEdCivica; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 16}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="edcivica-alt-{{indice}}"
+                                    id="edcivica-alt_a-{{indice}}"
+                                    (change)="agregarMarcado(indice + 15, item.alt_a[0])">
+                                <label class="form-check-label" for="edcivica-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="edcivica-alt-{{indice}}"
+                                    id="edcivica-alt_b-{{indice}}"
+                                    (change)="agregarMarcado(indice + 15, item.alt_b[0])">
+                                <label class="form-check-label" for="edcivica-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="edcivica-alt-{{indice}}"
+                                    id="edcivica-alt_c-{{indice}}"
+                                    (change)="agregarMarcado(indice + 15, item.alt_c[0])">
+                                <label class="form-check-label" for="edcivica-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="edcivica-alt-{{indice}}"
+                                    id="edcivica-alt_d-{{indice}}"
+                                    (change)="agregarMarcado(indice + 15, item.alt_d[0])">
+                                <label class="form-check-label" for="edcivica-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="edcivica-alt-{{indice}}"
+                                    id="edcivica-alt_e-{{indice}}"
+                                    (change)="agregarMarcado(indice + 15, item.alt_e[0])">
+                                <label class="form-check-label" for="edcivica-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Física -->
+            <div class="card mt-3" style="border-color: rgb(255, 109, 24);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(255, 109, 24); background-color: rgb(255, 232, 219);">
+                    Física &nbsp; <i class="bi bi-arrows-collapse"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasFisica; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 19}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="fisica-alt-{{indice}}"
+                                    id="fisica-alt_a-{{indice}}" (change)="agregarMarcado(indice + 18, item.alt_a[0])">
+                                <label class="form-check-label" for="fisica-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="fisica-alt-{{indice}}"
+                                    id="fisica-alt_b-{{indice}}" (change)="agregarMarcado(indice + 18, item.alt_b[0])">
+                                <label class="form-check-label" for="fisica-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="fisica-alt-{{indice}}"
+                                    id="fisica-alt_c-{{indice}}" (change)="agregarMarcado(indice + 18, item.alt_c[0])">
+                                <label class="form-check-label" for="fisica-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="fisica-alt-{{indice}}"
+                                    id="fisica-alt_d-{{indice}}" (change)="agregarMarcado(indice + 18, item.alt_d[0])">
+                                <label class="form-check-label" for="fisica-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="fisica-alt-{{indice}}"
+                                    id="fisica-alt_e-{{indice}}" (change)="agregarMarcado(indice + 18, item.alt_e[0])">
+                                <label class="form-check-label" for="fisica-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Geografía -->
+            <div class="card mt-3" style="border-color: rgb(63, 63, 63);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(63, 63, 63); background-color: rgb(205, 205, 205);">
+                    Geografía &nbsp; <i class="bi bi-globe-americas"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasGeografia; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 22}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="geog-alt-{{indice}}"
+                                    id="geog-alt_a-{{indice}}" (change)="agregarMarcado(indice + 21, item.alt_a[0])">
+                                <label class="form-check-label" for="geog-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="geog-alt-{{indice}}"
+                                    id="geog-alt_b-{{indice}}" (change)="agregarMarcado(indice + 21, item.alt_b[0])">
+                                <label class="form-check-label" for="geog-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="geog-alt-{{indice}}"
+                                    id="geog-alt_c-{{indice}}" (change)="agregarMarcado(indice + 21, item.alt_c[0])">
+                                <label class="form-check-label" for="geog-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="geog-alt-{{indice}}"
+                                    id="geog-alt_d-{{indice}}" (change)="agregarMarcado(indice + 21, item.alt_d[0])">
+                                <label class="form-check-label" for="geog-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="geog-alt-{{indice}}"
+                                    id="geog-alt_e-{{indice}}" (change)="agregarMarcado(indice + 21, item.alt_e[0])">
+                                <label class="form-check-label" for="geog-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Geometría -->
+            <div class="card mt-3" style="border-color: rgb(38, 92, 255);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(38, 92, 255); background-color: rgb(219, 228, 255);">
+                    Geometría &nbsp; <i class="bi bi-bezier"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasGeometria; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 24}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="geom-alt-{{indice}}"
+                                    id="geom-alt_a-{{indice}}" (change)="agregarMarcado(indice + 23, item.alt_a[0])">
+                                <label class="form-check-label" for="geom-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="geom-alt-{{indice}}"
+                                    id="geom-alt_b-{{indice}}" (change)="agregarMarcado(indice + 23, item.alt_b[0])">
+                                <label class="form-check-label" for="geom-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="geom-alt-{{indice}}"
+                                    id="geom-alt_c-{{indice}}" (change)="agregarMarcado(indice + 23, item.alt_c[0])">
+                                <label class="form-check-label" for="geom-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="geom-alt-{{indice}}"
+                                    id="geom-alt_d-{{indice}}" (change)="agregarMarcado(indice + 23, item.alt_d[0])">
+                                <label class="form-check-label" for="geom-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="geom-alt-{{indice}}"
+                                    id="geom-alt_e-{{indice}}" (change)="agregarMarcado(indice + 23, item.alt_e[0])">
+                                <label class="form-check-label" for="geom-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Historia del Perú -->
+            <div class="card mt-3" style="border-color: rgb(175, 80, 16);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(175, 80, 16); background-color: rgb(224, 207, 196);">
+                    Historia del Perú &nbsp; <i class="bi bi-flag"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasHistoriaPeru; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 26}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hp-alt-{{indice}}"
+                                    id="hp-alt_a-{{indice}}" (change)="agregarMarcado(indice + 25, item.alt_a[0])">
+                                <label class="form-check-label" for="hp-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hp-alt-{{indice}}"
+                                    id="hp-alt_b-{{indice}}" (change)="agregarMarcado(indice + 25, item.alt_b[0])">
+                                <label class="form-check-label" for="hp-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hp-alt-{{indice}}"
+                                    id="hp-alt_c-{{indice}}" (change)="agregarMarcado(indice + 25, item.alt_c[0])">
+                                <label class="form-check-label" for="hp-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hp-alt-{{indice}}"
+                                    id="hp-alt_d-{{indice}}" (change)="agregarMarcado(indice + 25, item.alt_d[0])">
+                                <label class="form-check-label" for="hp-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hp-alt-{{indice}}"
+                                    id="hp-alt_e-{{indice}}" (change)="agregarMarcado(indice + 25, item.alt_e[0])">
+                                <label class="form-check-label" for="hp-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Historia Universal -->
+            <div class="card mt-3" style="border-color: rgb(202, 202, 202);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(255, 255, 255); background-color: rgb(84, 84, 84);">
+                    Historia Universal &nbsp; <i class="bi bi-fire"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasHistoriaUniv; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 29}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hu-alt-{{indice}}"
+                                    id="hu-alt_a-{{indice}}" (change)="agregarMarcado(indice + 28, item.alt_a[0])">
+                                <label class="form-check-label" for="hu-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hu-alt-{{indice}}"
+                                    id="hu-alt_b-{{indice}}" (change)="agregarMarcado(indice + 28, item.alt_b[0])">
+                                <label class="form-check-label" for="hu-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hu-alt-{{indice}}"
+                                    id="hu-alt_c-{{indice}}" (change)="agregarMarcado(indice + 28, item.alt_c[0])">
+                                <label class="form-check-label" for="hu-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hu-alt-{{indice}}"
+                                    id="hu-alt_d-{{indice}}" (change)="agregarMarcado(indice + 28, item.alt_d[0])">
+                                <label class="form-check-label" for="hu-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hu-alt-{{indice}}"
+                                    id="hu-alt_e-{{indice}}" (change)="agregarMarcado(indice + 28, item.alt_e[0])">
+                                <label class="form-check-label" for="hu-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Lenguaje -->
+            <div class="card mt-3" style="border-color: rgb(4, 214, 154);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(4, 214, 154); background-color: rgb(219, 255, 245);">
+                    Lenguaje &nbsp; <i class="bi bi-chat-square-quote"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasLenguaje; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 32}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="leng-alt-{{indice}}"
+                                    id="leng-alt_a-{{indice}}" (change)="agregarMarcado(indice + 31, item.alt_a[0])">
+                                <label class="form-check-label" for="leng-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="leng-alt-{{indice}}"
+                                    id="leng-alt_b-{{indice}}" (change)="agregarMarcado(indice + 31, item.alt_b[0])">
+                                <label class="form-check-label" for="leng-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="leng-alt-{{indice}}"
+                                    id="leng-alt_c-{{indice}}" (change)="agregarMarcado(indice + 31, item.alt_c[0])">
+                                <label class="form-check-label" for="leng-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="leng-alt-{{indice}}"
+                                    id="leng-alt_d-{{indice}}" (change)="agregarMarcado(indice + 31, item.alt_d[0])">
+                                <label class="form-check-label" for="leng-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="leng-alt-{{indice}}"
+                                    id="leng-alt_e-{{indice}}" (change)="agregarMarcado(indice + 31, item.alt_e[0])">
+                                <label class="form-check-label" for="leng-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Literatura -->
+            <div class="card mt-3" style="border-color: rgb(226, 48, 190);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(226, 48, 190); background-color: rgb(253, 219, 255);">
+                    Literatura &nbsp; <i class="bi bi-vector-pen"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasLiteratura; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 35}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="lit-alt-{{indice}}"
+                                    id="lit-alt_a-{{indice}}" (change)="agregarMarcado(indice + 34, item.alt_a[0])">
+                                <label class="form-check-label" for="lit-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="lit-alt-{{indice}}"
+                                    id="lit-alt_b-{{indice}}" (change)="agregarMarcado(indice + 34, item.alt_b[0])">
+                                <label class="form-check-label" for="lit-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="lit-alt-{{indice}}"
+                                    id="lit-alt_c-{{indice}}" (change)="agregarMarcado(indice + 34, item.alt_c[0])">
+                                <label class="form-check-label" for="lit-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="lit-alt-{{indice}}"
+                                    id="lit-alt_d-{{indice}}" (change)="agregarMarcado(indice + 34, item.alt_d[0])">
+                                <label class="form-check-label" for="lit-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="lit-alt-{{indice}}"
+                                    id="lit-alt_e-{{indice}}" (change)="agregarMarcado(indice + 34, item.alt_e[0])">
+                                <label class="form-check-label" for="lit-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Química -->
+            <div class="card mt-3" style="border-color: rgb(0, 217, 90);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(0, 217, 90); background-color: rgb(236, 236, 236);">
+                    Química &nbsp; <i class="bi bi-hexagon"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasQuimica; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 38}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="quim-alt-{{indice}}"
+                                    id="quim-alt_a-{{indice}}" (change)="agregarMarcado(indice + 37, item.alt_a[0])">
+                                <label class="form-check-label" for="quim-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="quim-alt-{{indice}}"
+                                    id="quim-alt_b-{{indice}}" (change)="agregarMarcado(indice + 37, item.alt_b[0])">
+                                <label class="form-check-label" for="quim-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="quim-alt-{{indice}}"
+                                    id="quim-alt_c-{{indice}}" (change)="agregarMarcado(indice + 37, item.alt_c[0])">
+                                <label class="form-check-label" for="quim-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="quim-alt-{{indice}}"
+                                    id="quim-alt_d-{{indice}}" (change)="agregarMarcado(indice + 37, item.alt_d[0])">
+                                <label class="form-check-label" for="quim-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="quim-alt-{{indice}}"
+                                    id="quim-alt_e-{{indice}}" (change)="agregarMarcado(indice + 37, item.alt_e[0])">
+                                <label class="form-check-label" for="quim-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Razonamiento Matemático -->
+            <div class="card mt-3" style="border-color: rgb(255, 84, 124);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(255, 84, 124); background-color: rgb(255, 242, 245);">
+                    Razonamiento Matemático &nbsp; <i class="bi bi-columns-gap"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasRazMatematico; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 41}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rm-alt-{{indice}}"
+                                    id="rm-alt_a-{{indice}}" (change)="agregarMarcado(indice + 40, item.alt_a[0])">
+                                <label class="form-check-label" for="rm-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rm-alt-{{indice}}"
+                                    id="rm-alt_b-{{indice}}" (change)="agregarMarcado(indice + 40, item.alt_b[0])">
+                                <label class="form-check-label" for="rm-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rm-alt-{{indice}}"
+                                    id="rm-alt_c-{{indice}}" (change)="agregarMarcado(indice + 40, item.alt_c[0])">
+                                <label class="form-check-label" for="rm-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rm-alt-{{indice}}"
+                                    id="rm-alt_d-{{indice}}" (change)="agregarMarcado(indice + 40, item.alt_d[0])">
+                                <label class="form-check-label" for="rm-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rm-alt-{{indice}}"
+                                    id="rm-alt_e-{{indice}}" (change)="agregarMarcado(indice + 40, item.alt_e[0])">
+                                <label class="form-check-label" for="rm-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Razonamiento Verbal -->
+            <div class="card mt-3" style="border-color: rgb(27, 196, 128);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(27, 196, 128); background-color: rgb(233, 255, 249);">
+                    Razonamiento Verbal &nbsp; <i class="bi bi-quote"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasRazVerbal; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 45}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rv-alt-{{indice}}"
+                                    id="rv-alt_a-{{indice}}" (change)="agregarMarcado(indice + 44, item.alt_a[0])">
+                                <label class="form-check-label" for="rv-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rv-alt-{{indice}}"
+                                    id="rv-alt_b-{{indice}}" (change)="agregarMarcado(indice + 44, item.alt_b[0])">
+                                <label class="form-check-label" for="rv-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rv-alt-{{indice}}"
+                                    id="rv-alt_c-{{indice}}" (change)="agregarMarcado(indice + 44, item.alt_c[0])">
+                                <label class="form-check-label" for="rv-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rv-alt-{{indice}}"
+                                    id="rv-alt_d-{{indice}}" (change)="agregarMarcado(indice + 44, item.alt_d[0])">
+                                <label class="form-check-label" for="rv-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rv-alt-{{indice}}"
+                                    id="rv-alt_e-{{indice}}" (change)="agregarMarcado(indice + 44, item.alt_e[0])">
+                                <label class="form-check-label" for="rv-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Trigonometría -->
+            <div class="card mt-3" style="border-color: rgb(64, 196, 27);">
+                <div class="card-header text-center fw-bold"
+                    style="color: rgb(64, 196, 27); background-color: rgb(238, 255, 226);">
+                    Trigonometría &nbsp; <i class="bi bi-triangle"></i>
+                </div>
+
+                <div class="px-3">
+                    <ul class="my-4" style="padding-left: 0;" *ngFor="let item of preguntasTrigonometria; let indice = index">
+                        <li class="list-group-item">
+                            <div class="text-center fw-bold text-black-50">
+                                <em>Pregunta {{indice + 49}}</em>
+                            </div>
+                            <span [innerHTML]="item.pregunta">
+                            </span>
+                        </li>
+                        <li class="list-group-item alternativa">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="trig-alt-{{indice}}"
+                                    id="trig-alt_a-{{indice}}" (change)="agregarMarcado(indice + 48, item.alt_a[0])">
+                                <label class="form-check-label" for="trig-alt_a-{{indice}}">
+                                    A) {{item.alt_a[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="trig-alt-{{indice}}"
+                                    id="trig-alt_b-{{indice}}" (change)="agregarMarcado(indice + 48, item.alt_b[0])">
+                                <label class="form-check-label" for="trig-alt_b-{{indice}}">
+                                    B) {{item.alt_b[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="trig-alt-{{indice}}"
+                                    id="trig-alt_c-{{indice}}" (change)="agregarMarcado(indice + 48, item.alt_c[0])">
+                                <label class="form-check-label" for="trig-alt_c-{{indice}}">
+                                    C) {{item.alt_c[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="trig-alt-{{indice}}"
+                                    id="trig-alt_d-{{indice}}" (change)="agregarMarcado(indice + 48, item.alt_d[0])">
+                                <label class="form-check-label" for="trig-alt_d-{{indice}}">
+                                    D) {{item.alt_d[0]}}
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="trig-alt-{{indice}}"
+                                    id="trig-alt_e-{{indice}}" (change)="agregarMarcado(indice + 48, item.alt_e[0])">
+                                <label class="form-check-label" for="trig-alt_e-{{indice}}">
+                                    E) {{item.alt_e[0]}}
+                                </label>
+                            </div>
+
+                        </li>
+                        <div class="mt-4">
+                            <hr>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+
+                <!-- Button trigger modal advertencia -->
+                <button *ngIf="!proceder" type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                    data-bs-target="#advetenciaModal">
+                    <i class="bi bi-check-circle"></i> &nbsp; &nbsp;
+                    Finalizar examen
+                </button>
+
+                <!-- Button trigger modal confirmar -->
+                <button *ngIf="proceder" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#confirmarModal">
+                    <i class="bi bi-check-circle"></i> &nbsp; &nbsp;
+                    Finalizar examen
+                </button>
+
+                <!-- Modal de advetencia -->
+                <div class="modal fade" id="advetenciaModal" tabindex="-1" aria-labelledby="advetenciaModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-4 text-danger fw-bold" id="advetenciaModalLabel">
+                                    Advertencia!!!
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Hay preguntas que aún no tienen respuesta, desea dejarlo así?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                                <button type="button" class="btn btn-warning" (click)="cambiarProceder()"
+                                    data-bs-dismiss="modal">
+                                    Proceder a calificar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal de confirmación -->
+                <div class="modal fade" id="confirmarModal" tabindex="-1" aria-labelledby="confirmarModal"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-4 fw-bold text-success" id="confirmarModalLabel">Calificar
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Desea proceder a calificar su examen?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                                    (click)="calificar()" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    Sí, calificar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal resultado -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-4 fw-bold text-success" id="staticBackdropLabel">Resultado
+                                </h1>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="card py-4 d-flex justify-content-center">
+                                    <div class="card-body">
+                                        <div class="row">
+
+                                            <!-- Acertadas 0-50 -->
+                                            <div class="mt-2 col-12 col-sm-4">
+                                                <h5 class="card-title fw-bold">Preguntas acertadas</h5>
+                                                <p class="card-text fs-3 text-black-50 fw-bold">
+                                                    <span
+                                                        [ngClass]="{'text-danger': pregAcertadas < 28, 'text-warning': pregAcertadas < 39 && pregAcertadas > 27, 'text-success': pregAcertadas > 38}">
+                                                        {{pregAcertadas}}
+                                                    </span>
+                                                    / 50
+                                                </p>
+                                            </div>
+
+                                            <!-- Puntaje 0-500 -->
+                                            <div class="mt-2 col-12 col-sm-4">
+                                                <h5 class="card-title fw-bold">Puntaje</h5>
+                                                <p class="card-text fs-3 text-black-50 fw-bold">
+                                                    <span
+                                                        [ngClass]="{'text-danger': puntaje < 263, 'text-warning': puntaje < 375 && puntaje > 262, 'text-success': puntaje > 374}">
+                                                        {{puntaje}}
+                                                    </span>
+                                                </p>
+                                            </div>
+
+                                            <!-- Nota 0-20 -->
+                                            <div class="mt-2 col-12 col-sm-4">
+                                                <h5 class="card-title fw-bold">Nota</h5>
+                                                <p class="card-text fs-3 text-black-50 fw-bold">
+                                                    <span
+                                                        [ngClass]="{'text-danger': nota < 12, 'text-warning': nota < 15 && nota > 11, 'text-success': nota > 14}">
+                                                        {{nota}}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <small class="text-black-50 mt-4" *ngIf="nota < 12">No te desanimes, sigue
+                                            preparándote</small>
+                                        <small class="text-black-50 mt-4" *ngIf="nota < 15 && nota > 11">Es un buen
+                                            puntaje, sigue esforzándote</small>
+                                        <small class="text-black-50 mt-4" *ngIf="nota > 14">Felicitaciones, estás a un
+                                            paso
+                                            de legrar tu ingreso</small>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Pregunta</th>
+                                                <th scope="col">Correcto</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <!-- Álgebra -->
+                                            <tr *ngFor="let item of preguntasAlgebra; let indice = index">
+                                                <th scope="row">{{indice + 1}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Anatomía -->
+                                            <tr *ngFor="let item of preguntasAnatomia; let indice = index">
+                                                <th scope="row">{{indice + 4}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 3]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 3]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Aritmética -->
+                                            <tr *ngFor="let item of preguntasAritmetica; let indice = index">
+                                                <th scope="row">{{indice + 7}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 6]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 6]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Biología -->
+                                            <tr *ngFor="let item of preguntasBiologia; let indice = index">
+                                                <th scope="row">{{indice + 10}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 9]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 9]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Economía -->
+                                            <tr *ngFor="let item of preguntasEconomia; let indice = index">
+                                                <th scope="row">{{indice + 13}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 12]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 12]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Educación Cívica -->
+                                            <tr *ngFor="let item of preguntasEdCivica; let indice = index">
+                                                <th scope="row">{{indice + 16}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 15]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 15]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Física -->
+                                            <tr *ngFor="let item of preguntasFisica; let indice = index">
+                                                <th scope="row">{{indice + 19}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 18]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 18]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Geografía -->
+                                            <tr *ngFor="let item of preguntasGeografia; let indice = index">
+                                                <th scope="row">{{indice + 22}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 21]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 21]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Geometría -->
+                                            <tr *ngFor="let item of preguntasGeometria; let indice = index">
+                                                <th scope="row">{{indice + 24}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 23]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 23]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Historia del Perú -->
+                                            <tr *ngFor="let item of preguntasHistoriaPeru; let indice = index">
+                                                <th scope="row">{{indice + 26}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 25]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 25]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Historia Universal -->
+                                            <tr *ngFor="let item of preguntasHistoriaUniv; let indice = index">
+                                                <th scope="row">{{indice + 29}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 28]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 28]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Lenguaje -->
+                                            <tr *ngFor="let item of preguntasLenguaje; let indice = index">
+                                                <th scope="row">{{indice + 32}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 31]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 31]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Literatura -->
+                                            <tr *ngFor="let item of preguntasLiteratura; let indice = index">
+                                                <th scope="row">{{indice + 35}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 34]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 34]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Química -->
+                                            <tr *ngFor="let item of preguntasQuimica; let indice = index">
+                                                <th scope="row">{{indice + 38}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 37]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 37]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Razonamiento Matemático -->
+                                            <tr *ngFor="let item of preguntasRazMatematico; let indice = index">
+                                                <th scope="row">{{indice + 41}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 40]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 40]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Razonamiento Verbal -->
+                                            <tr *ngFor="let item of preguntasRazVerbal; let indice = index">
+                                                <th scope="row">{{indice + 45}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 44]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 44]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                            <!-- Trigonometría -->
+                                            <tr *ngFor="let item of preguntasTrigonometria; let indice = index">
+                                                <th scope="row">{{indice + 49}}</th>
+                                                <td [innerHTML]="item.pregunta"></td>
+
+                                                <td *ngIf="acertadas[indice + 48]" class="text-success"><i
+                                                        class="bi bi-check-circle-fill"></i></td>
+                                                <td *ngIf="!acertadas[indice + 48]" class="text-danger"><i
+                                                        class="bi bi-x-circle"></i></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                    data-bs-toggle="modal" data-bs-target="#staticBackdrop1"
+                                    (click)="cerrrar_modal_resultado()">
+                                    <i class="bi bi-eye"></i> &nbsp;
+                                    Solucionario
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal ver solucionario -->
+                <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdrop1Label" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-4 fw-bold text-success" id="staticBackdrop1Label">Solucionario
+                                </h1>
+                            </div>
+                            <div class="modal-body" id="solucionario">
+
+                                <!-- Álgebra -->
+                                <ul class="list-group my-4" *ngFor="let item of preguntasAlgebra; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 1}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Anatomía -->
+                                <ul class="list-group my-4" *ngFor="let item of preguntasAnatomia; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 4}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Aritmética -->
+                                <ul class="list-group my-4"
+                                    *ngFor="let item of preguntasAritmetica; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 7}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Biología -->
+                                <ul class="list-group my-4" *ngFor="let item of preguntasBiologia; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 10}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Economía -->
+                                <ul class="list-group my-4" *ngFor="let item of preguntasEconomia; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 13}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Educación Cívica -->
+                                <ul class="list-group my-4" *ngFor="let item of preguntasEdCivica; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 16}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Física -->
+                                <ul class="list-group my-4" *ngFor="let item of preguntasFisica; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 19}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Geografía -->
+                                <ul class="list-group my-4" *ngFor="let item of preguntasGeografia; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 22}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Geometría -->
+                                <ul class="list-group my-4" *ngFor="let item of preguntasGeometria; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 24}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Historia del Perú -->
+                                <ul class="list-group my-4"
+                                    *ngFor="let item of preguntasHistoriaPeru; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 26}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Historia Universal -->
+                                <ul class="list-group my-4"
+                                    *ngFor="let item of preguntasHistoriaUniv; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 29}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Lenguaje -->
+                                <ul class="list-group my-4" *ngFor="let item of preguntasLenguaje; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 32}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Literatura -->
+                                <ul class="list-group my-4"
+                                    *ngFor="let item of preguntasLiteratura; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 35}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Química -->
+                                <ul class="list-group my-4" *ngFor="let item of preguntasQuimica; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 38}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Razonamiento matemático -->
+                                <ul class="list-group my-4"
+                                    *ngFor="let item of preguntasRazMatematico; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 41}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Razonamiento matemático -->
+                                <ul class="list-group my-4" *ngFor="let item of preguntasRazVerbal; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 45}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <!-- Trigonometría -->
+                                <ul class="list-group my-4"
+                                    *ngFor="let item of preguntasTrigonometria; let indice = index">
+                                    <li class="list-group-item">
+                                        <div class="text-center fw-bold text-black-50">
+                                            <em>Pregunta {{indice + 49}}</em>
+                                        </div>
+                                        <span [innerHTML]="item.pregunta">
+                                        </span>
+                                        <p class="fw-bold text-primary fs-5">Solución</p>
+                                        <span [innerHTML]="item.solucionario">
+                                        </span>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" (click)="descargarPDF()"
+                                    *ngIf="!descargando">
+                                    <i class="bi bi-download"></i> &nbsp;
+                                    Descargar
+                                </button>
+                                <button type="button" class="btn btn-success" (click)="descargarPDF()"
+                                    *ngIf="descargando" disabled>
+                                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                    &nbsp;
+                                    Descargando
+                                </button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                    (click)="redirigir()">
+                                    <i class="bi bi-arrow-clockwise"></i> &nbsp;
+                                    Empezar otro
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        </ng-container>
+    </div>
+</div>
+
+<!-- Modal Básico -->
+<div class="modal fade" id="reservacionModal" tabindex="-1" aria-labelledby="reservacionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="reservacionModalLabel">Reservar suscripción</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+  
+            <div class="row d-flex justify-content-center">
+              <div class="col-12 col-sm-6">
+                Tienes un código de referido? &nbsp;
+  
+                <a data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  <i class="bi bi-info-circle"></i>
+                </a>
+                <div class="collapse" id="collapseExample">
+                  <div class="card card-body">
+                    <p>
+                      Es un código de 6 dígitos que se le proporciona a un usuario registrado
+                    que permite a usuarios nuevos a acceder a un descuento del <strong class="text-success fs-5">10% </strong> en cualquiera de nuestro planes.
+                    </p>
+                  </div>
+                </div>
+  
+                <div class="input-group my-3">
+                  <input type="text" class="form-control" placeholder="Ingrese el código" name="codigo_referido"
+                    id="codigo_referido" [(ngModel)]="codigo_referido" aria-label="Ingrese el código"
+                    aria-describedby="button-addon2" maxlength="6">
+                  <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                    (click)="verificar_codigo_referido()" [disabled]="verificado">
+                    Verificar
+                  </button>
+                </div>
+              </div>
+            </div>
+  
+            Realizar un pago de
+            <h1 class="fw-bold text-success">S/. {{pago_basico}}</h1>
+            A una de las siguientes cuentas
+          </div>
+  
+          <div class="" *ngIf="!load_cuentas">
+            <ng-container *ngFor="let item of cuentas">
+              <div class="shadow rounded px-3 my-3 py-3" [ngStyle]="{'background-color': item.color}">
+                <div class="row pt-3">
+                  <div class="text-center">
+                    <h5 class="fw-bold">
+                      {{item.banco}}
+                    </h5>
+                  </div>
+                </div>
+  
+                <div class="row text-center">
+                  <div class="col-md-4 col-12">
+                    <span class="badge rounded-pill text-bg-light"><strong>Titular: </strong>
+                      {{item.titular}}</span>
+                  </div>
+  
+                  <div class="col-md-4 col-12">
+                    <span class="fs-6 mx-3"> <strong>Cuenta: </strong> {{item.cuenta}}</span>
+                  </div>
+  
+                  <div class="col-md-4 col-12">
+                    <span class="fs-6 mx-3"> <strong>CCI: </strong> {{item.cci}}</span>
+                  </div>
+                </div>
+              </div>
+  
+            </ng-container>
+          </div>
+  
+          <div class="text-danger">
+            <strong>Recuerde: </strong>
+            La reservación no asegura su suscripción, éste se dará cuando hayamos verificado su pago!
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="registrar_pago_basico()">
+            <i class="bi bi-bookmark-heart"></i> &nbsp;
+            Reservar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal Premium -->
+  <div class="modal fade" id="resPremuim" tabindex="-1" aria-labelledby="resPremuimLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="resPremuimLabel">Reservar suscripción premium</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+  
+            <div class="row d-flex justify-content-center">
+              <div class="col-12 col-sm-6">
+                Tienes un código de referido? &nbsp;
+                
+                <a data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+                  <i class="bi bi-info-circle"></i>
+                </a>
+                <div class="collapse" id="collapseExample1">
+                  <div class="card card-body">
+                    <p>
+                      Es un código de 6 dígitos que se le proporciona a un usuario registrado
+                    que permite a usuarios nuevos a acceder a un descuento del <strong class="text-success fs-5">10% </strong> en cualquiera de nuestro planes.
+                    </p>
+                  </div>
+                </div>
+  
+                <div class="input-group my-3">
+                  <input type="text" class="form-control" placeholder="Ingrese el código" name="codigo_referido"
+                    id="codigo_referido" [(ngModel)]="codigo_referido" aria-label="Ingrese el código"
+                    aria-describedby="button-addon2" maxlength="6">
+                  <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                    (click)="verificar_codigo_referido()" [disabled]="verificado">Verificar</button>
+                </div>
+              </div>
+            </div>
+  
+            Realizar un pago de
+            <h1 class="fw-bold text-success">S/. {{pago_premium}}</h1>
+            A una de las siguientes cuentas
+          </div>
+  
+          <div class="" *ngIf="!load_cuentas">
+            <ng-container *ngFor="let item of cuentas">
+              <div class="shadow rounded px-3 my-3 py-3" [ngStyle]="{'background-color': item.color}">
+                <div class="row pt-3">
+                  <div class="text-center">
+                    <h5 class="fw-bold">
+                      {{item.banco}}
+                    </h5>
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-4 col-12">
+                    <span class="badge rounded-pill text-bg-light"><strong>Titular: </strong>
+                      {{item.titular}}</span>
+                  </div>
+  
+                  <div class="col-md-4 col-12">
+                    <span class="fs-6 mx-3"> <strong>Cuenta: </strong> {{item.cuenta}}</span>
+                  </div>
+  
+                  <div class="col-md-4 col-12">
+                    <span class="fs-6 mx-3"> <strong>CCI: </strong> {{item.cci}}</span>
+                  </div>
+                </div>
+              </div>
+  
+            </ng-container>
+          </div>
+  
+          <div class="text-danger">
+            <strong>Recuerde: </strong>
+            La reservación no asegura su suscripción, éste se dará cuando hayamos verificado su pago!
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="registrar_pago_premium()">
+            <i class="bi bi-bookmark-heart"></i> &nbsp;
+            Reservar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,120 @@
+
+<app-nav></app-nav>
+
+<div class="container py-4">
+    <app-sidebar></app-sidebar>
+
+    <div class="card shadow mt-4" style="border-color: #F8F8F8;">
+        <h3 class="card-header fw-bold text-center text-muted">
+            Actualización de usuarios
+        </h3>
+        <h6 class="card-header text-center">
+            Este módulo permite la actualización de usuarios
+        </h6>
+        <div class="card-body">
+            <div class="d-flex justify-content-center m-3">
+                <div class="p-1 p-sm-1 col-12">
+                    <form #updateForm="ngForm" (ngSubmit)="actualizar(updateForm)">
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <label for="nombres" class="form-label text-black-50">Nombres</label>
+                                <input type="text" class="form-control" placeholder="Ingrese sus nombres" name="nombres"
+                                    id="nombres" [(ngModel)]="user.nombres" required />
+                            </div>
+
+                            <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                <label for="apellidos" class="form-label text-black-50">Apellidos</label>
+                                <input type="text" class="form-control" placeholder="Ingrese sus apellidos "
+                                    name="apellidos" id="apellidos" [(ngModel)]="user.apellidos" required />
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-12 col-sm-6">
+                                <label for="email" class="form-label text-black-50">Correo</label>
+                                <input type="email" class="form-control" placeholder="Ingrese su correo" name="email"
+                                    id="email" [(ngModel)]="user.email" required />
+                            </div>
+
+                            <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                <label for="telefono" class="form-label text-black-50">Teléfono</label>
+                                <input type="text" class="form-control" placeholder="Ingrese número" name="telefono"
+                                    id="telefono" [(ngModel)]="user.telefono" required maxlength="9" />
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-12 col-sm-6">
+                                <label for="dni" class="form-label text-black-50">DNI</label>
+                                <input type="text" class="form-control" placeholder="Ingrese su DNI" name="dni" id="dni"
+                                    [(ngModel)]="user.dni" required maxlength="8" />
+                            </div>
+
+                            <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                <label for="f_nacimiento" class="form-label text-black-50">Nacimiento</label>
+                                <input type="date" class="form-control" placeholder="Ingrese número" name="f_nacimiento"
+                                    id="f_nacimiento" [(ngModel)]="user.f_nacimiento" required />
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-12 col-sm-6">
+                                <label for="password1" class="form-label text-black-50">Contraseña nueva</label>
+                                <input [type]="passwClass" class="form-control" placeholder="Contraseña"
+                                    (keyup)="compare_password()" name="pass" id="password1" [(ngModel)]="pass1"/>
+                            </div>
+
+                            <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                <label for="password" class="form-label text-black-50">Confirmar contraseña</label>
+                                <div class="input-group">
+                                    <input [type]="passwClass" class="form-control" id="password"
+                                        placeholder="Confirme su contraseña" name="pass" [(ngModel)]="pass"
+                                        (keyup)="compare_password()" />
+                                    <a class="btn btn-outline-primary" (click)="onClickPass()">
+                                        <i class="bi bi-eye-fill" aria-hidden="true" *ngIf="!show"></i>
+                                        <i class="bi bi-eye-slash-fill" aria-hidden="true" *ngIf="show"></i>
+                                    </a>
+                                </div>
+
+                                <div class="alert alert-danger mt-2 text-center" role="alert" *ngIf="alert_pass">
+                                    <em>Las contraseñas no coinciden</em>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-12 col-sm-6">
+                                <label for="genero" class="form-label text-black-50">Género</label>
+                                <select id="genero" class="form-select" name="genero" [(ngModel)]="user.genero"
+                                    required>
+                                    <option value="" selected disabled>--Seleccione--</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12 col-sm-6">
+                                <label for="role" class="form-label text-black-50">Tipo de usuario</label>
+                                <select id="role" class="form-select" name="role" [(ngModel)]="user.role"
+                                    required>
+                                    <option value="" selected disabled>--Seleccione--</option>
+                                    <option value="USER">Usuario</option>
+                                    <option value="ADMIN">Administrador</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary" [disabled]="updateForm.invalid && valid">
+                                <i class="bi bi-person-check"></i> &nbsp; Actualizar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <a title="Volver a usuarios" class="text-success fs-2" [routerLink]="['/admin/usuarios']"><i class="bi bi-arrow-left-square-fill"></i></a>
+        </div>
+    </div>
+</div>

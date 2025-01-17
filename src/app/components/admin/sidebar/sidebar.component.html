@@ -1,0 +1,76 @@
+
+<div class="mt-5">
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+        aria-controls="offcanvasWithBothOptions">Menú</button>
+
+    <div class="offcanvas offcanvas-start text-bg-dark w-auto" data-bs-scroll="true" tabindex="-1"
+        id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="pt-2">
+                <h4>Enlaces rápidos</h4>
+                <hr class="hr-gradient hr-light mb-2 opacity-25">
+            
+                <nav>
+                    <nav>
+                        <a class="nav-link p-2" [routerLink]="['/admin']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><i class="bi bi-house"></i> 
+                            &nbsp; &nbsp; Inicio
+                        </a>
+                        <a *ngIf="user.nombres == 'Dino admin' || user.nombres == 'Vlass'" class="nav-link p-2" [routerLink]="['/admin/pagos']" routerLinkActive="active"><i class="bi bi-cash-coin"></i>
+                            &nbsp; &nbsp; Pagos
+                        </a>
+                        <a *ngIf="user.nombres == 'Dino admin' || user.nombres == 'Vlass'" class="nav-link p-2" [routerLink]="['/admin/cuentas']" routerLinkActive="active"><i class="bi bi-credit-card"></i>
+                            &nbsp; &nbsp; Cuentas
+                        </a>
+                        <a *ngIf="user.nombres == 'Dino admin' || user.nombres == 'Vlass'" class="nav-link p-2" [routerLink]="['/admin/resultados']" routerLinkActive="active"><i class="bi bi-check2-circle"></i>
+                            &nbsp; &nbsp; Rankings por simulacros
+                        </a>
+                        <a *ngIf="user.nombres == 'Dino admin' || user.nombres == 'Vlass'" class="nav-link p-2" [routerLink]="['/admin/ranking-curso']" routerLinkActive="active"><i class="bi bi-graph-up-arrow"></i> 
+                            &nbsp; &nbsp; Ranking por cursos
+                        </a>
+                        <a *ngIf="user.nombres == 'Dino admin' || user.nombres == 'Vlass'" class="nav-link p-2" [routerLink]="['/admin/usuarios']" routerLinkActive="active"><i class="bi bi-people"></i>
+                            &nbsp; &nbsp; Usuarios
+                        </a>
+                        <a *ngIf="user.nombres == 'Dino admin' || user.nombres == 'Vlass'" class="nav-link p-2" [routerLink]="['/admin/circulos']" routerLinkActive="active"><i class="bi bi-ubuntu"></i>
+                            &nbsp; &nbsp; Círculos de estudio
+                        </a>
+                        <a *ngIf="user.nombres == 'Dino admin' || user.nombres == 'Vlass'" class="nav-link p-2" [routerLink]="['/admin/reviews']" routerLinkActive="active"><i class="bi bi-star"></i>
+                            &nbsp; &nbsp; Reseñas
+                        </a>
+                        <a *ngIf="user.nombres == 'Dino admin' || user.nombres == 'Vlass'" class="nav-link p-2" [routerLink]="['/admin/mensajes']" routerLinkActive="active"><i class="bi bi-chat-left"></i>
+                            &nbsp; &nbsp; Mensajes
+                        </a>
+                    </nav>
+                </nav>
+            </div>
+            
+            <div class="pt-4 pl-0">
+                <h4>Cursos</h4>
+                <hr class="hr-gradient hr-light mb-2 opacity-25">
+            
+                <nav>
+                    <a class="nav-link p-2" [routerLink]="['/admin/algebra']" routerLinkActive="active"><i class="bi bi-superscript"></i> &nbsp; &nbsp; Álgebra</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/anatomia']" routerLinkActive="active"><i class="bi bi-lungs"></i> &nbsp; &nbsp; Anatomía</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/aritmetica']" routerLinkActive="active"><i class="bi bi-plus-slash-minus"></i> &nbsp; &nbsp; Aritmética</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/biologia']" routerLinkActive="active"><i class="bi bi-bug"></i> &nbsp; &nbsp; Biología</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/economia']" routerLinkActive="active"><i class="bi bi-currency-euro"></i> &nbsp; &nbsp; Economía</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/ed-civica']" routerLinkActive="active"><i class="bi bi-bank"></i> &nbsp; &nbsp; Educación Cívica</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/fisica']" routerLinkActive="active"><i class="bi bi-arrows-collapse"></i> &nbsp; &nbsp; Física</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/geografia']" routerLinkActive="active"><i class="bi bi-globe-americas"></i> &nbsp; &nbsp; Geografía</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/geometria']" routerLinkActive="active"><i class="bi bi-bezier"></i> &nbsp; &nbsp; Geometría</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/historia-peru']" routerLinkActive="active"><i class="bi bi-flag"></i> &nbsp; &nbsp; Historia del Perú</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/historia-universal']" routerLinkActive="active"><i class="bi bi-fire"></i> &nbsp; &nbsp; Historia Universal</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/lenguaje']" routerLinkActive="active"><i class="bi bi-chat-square-quote"></i> &nbsp; &nbsp; Lenguaje</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/literatura']" routerLinkActive="active"><i class="bi bi-vector-pen"></i> &nbsp; &nbsp; Literatura</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/quimica']" routerLinkActive="active"><i class="bi bi-hexagon"></i> &nbsp; &nbsp; Química</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/raz-matematico']" routerLinkActive="active"><i class="bi bi-columns-gap"></i> &nbsp; &nbsp; Razonamiento Matemático</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/raz-verbal']" routerLinkActive="active"><i class="bi bi-quote"></i> &nbsp; &nbsp; Razonamiento Verbal</a>
+                    <a class="nav-link p-2" [routerLink]="['/admin/trigonometria']" routerLinkActive="active"><i class="bi bi-triangle"></i> &nbsp; &nbsp; Trigonometría</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
